@@ -21,5 +21,6 @@ public class Handler implements HttpHandler {
       os.write(main_html.toString().getBytes());
       os.close();
     }
+    System.out.print("done");
   }
 }
