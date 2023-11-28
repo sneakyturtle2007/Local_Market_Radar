@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="main.css" type="text/css" media="screen"/>
+        <script>
+            function addItem() {
+                //let name = document.getElementsByTagName("template")[0];
+                let price_and_stock = document.getElementsByTagName("template")[0];
+                //let description = document.getElementsByTagName("template")[2];
+                for(let i = 0; i < 100; i++) {
+                    let clon = price_and_stock.content.cloneNode(true);
+                    let itemprice_itemstock = clon.querySelector("p");
+                    itemprice_itemstock.textContent = "Price: " + i + " | Stock: " + i; 
+                    
+                    document.body.appendChild(clon);
+                }
+            }
+            window.onload = addItem;
+        </script>
+        
+        <style>
+            body{
+                background-color : rgb(33, 33, 33);
+                background-size: cover;
+                margin: 0px;
+            }
+            h1{
+                color: white;
+                text-align: center;
+                
+            }
+            h2{
+                color: white;
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            h3{
+                color: white;
+                margin-left: 10px;
+                text-align: left;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            p{
+                color: white;
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            .itemcontainer{
+                display: flex;
+                flex-grow : 1;
+                margin-top: 15px;
+                margin-left: 17px;
+                float: left;
+                
+                 
+            }
+            .itemcard{
+                
+                background-color: rgb(33, 33, 33);
+                border: 1px solid white;
+                border-radius: 10px;
+                margin: 17 auto;
+                padding: 10px;
+                width: 210px;
+                height: 245px;
+                float: left;
+                
+                
+                text-align: center; 
+                color:  rgb(220,220,220);
+            }
+            .itemcard img{
+                margin-left: auto;
+                margin-right: auto;
+                border: 2px solid grey;
+                width: 145px;
+                height: 100px;
+            }
+            .itemcard p.name{ 
+                width: 200px;
+                height: 20px;
+                text-align: center;
+                font-size: 1.em;
+                overflow: auto;
+            }
+            .itemcard p.price{
+                font-size: 0.8em;
+            }
+            
+            .itemcard p.description{ 
+                  
+                background-color: rgb(33, 33, 33);
+                width: 200px;
+                height: 50px;
+                margin: 4px;
+                border: 1px solid white;
+                border-radius: 10px;
+                font-size: 0.8em;
+                overflow: auto;
+            }
+            input:focus {
+                background-color: #cecece; /* Change this to your preferred color */
+            }
+            
+        </style>
+
+        <title>Home</title>
+    </head>  
+    
+    <body>
+        <header>
+            <h1>Home</h1>
+            <hr>
+            <a href="http://localhost:8000/test2">Account</a>
+            <hr>
+        </header>
+        
+        <main>
+            <template>
+                <div class = "itemcontainer">
+                    <div class="itemcard">
+                        <img src="https://i.ytimg.com/vi/_3OUQTruQRE/maxresdefault.jpg" alt="image">
+                        <h5 class="name">title</h5>
+                        <p class="price">Price: Price    |     Stock: stock</p>
+                        
+                        <p class="description">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas temporibus quibusdam doloremque velit magnam autem modi ipsam nam maiores? Odio consectetur doloribus tenetur iste fugiat explicabo sequi amet distinctio! </p>
+                    </div>
+                </div>
+                
+            </template>
+        </main>
+        
+        <footer>
+            <hr>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus maiores dolores perspiciatis dolorum? Ab fugit non quas. Earum expedita totam magnam, veniam quod optio temporibus nesciunt quia ipsa, unde fugit.</p>
+        </footer>
+    </body>
+</html>

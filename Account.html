@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="main.css" type="text/css" media="screen"/>
+        <style>
+            body{
+                background-color : rgb(33, 33, 33);
+                background-size: cover;
+                margin: 0px;
+            }
+            h1{
+                color: white;
+                text-align: center;
+                
+            }
+            h2{
+                color: white;
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            h3{
+                color: white;
+                margin-left: 10px;
+                text-align: left;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            p{
+                color: white;
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            .itemcontainer{
+                display: flex;
+                flex-grow : 1;
+                margin-top: 15px;
+                margin-left: 17px;
+                float: left;
+                
+                 
+            }
+            .itemcard{
+                
+                background-color: rgb(33, 33, 33);
+                border: 1px solid white;
+                border-radius: 10px;
+                margin: 17 auto;
+                padding: 10px;
+                width: 210px;
+                height: 245px;
+                float: left;
+                
+                
+                text-align: center; 
+                color:  rgb(220,220,220);
+            }
+            .itemcard img{
+                margin-left: auto;
+                margin-right: auto;
+                border: 2px solid grey;
+                width: 145px;
+                height: 100px;
+            }
+            .itemcard p.name{ 
+                width: 200px;
+                height: 20px;
+                text-align: center;
+                font-size: 1.em;
+                overflow: auto;
+            }
+            .itemcard p.price{
+                font-size: 0.8em;
+            }
+            
+            .itemcard p.description{ 
+                  
+                background-color: rgb(33, 33, 33);
+                width: 200px;
+                height: 50px;
+                margin: 4px;
+                border: 1px solid white;
+                border-radius: 10px;
+                font-size: 0.8em;
+                overflow: auto;
+            }
+            input:focus {
+                background-color: #cecece; /* Change this to your preferred color */
+            }
+            
+        </style>
+        <title>Account Creation</title>
+    </head>
+
+    <body>
+        <header>
+            <h1>Account Creation</h1>
+            <hr>
+        </header>
+        <div style="text-align: center;">
+            <input style="font-size: 24px;" type="text" placeholder="Username" tabIndex="1"><br>
+            <input style="font-size: 24px;" type="text" placeholder="Password" tabIndex="2"><br>
+            <input style="font-size: 24px;" type="text" placeholder="Store Name" tabIndex="3"><br>
+            <input style="font-size: 24px;" type="text", id="Address" placeholder="Address" tabIndex="4"><br> 
+        </div>
+        <script src = "Account.js"></script>
+    </body>
+</html>
