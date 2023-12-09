@@ -2,23 +2,6 @@
 <html lang="en">
     <head> 
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="main.css" type="text/css" media="screen"/>
-        <script>
-            function addItem() {
-                //let name = document.getElementsByTagName("template")[0];
-                let price_and_stock = document.getElementsByTagName("template")[0];
-                //let description = document.getElementsByTagName("template")[2];
-                for(let i = 0; i < 100; i++) {
-                    let clon = price_and_stock.content.cloneNode(true);
-                    let itemprice_itemstock = clon.querySelector("p");
-                    itemprice_itemstock.textContent = "Price: " + i + " | Stock: " + i; 
-                    
-                    document.body.appendChild(clon);
-                }
-            }
-            window.onload = addItem;
-        </script>
-        
         <style>
             body{
                 background-color : rgb(33, 33, 33);
@@ -46,11 +29,41 @@
                 text-align: center;
                 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             }
+            a{
+                color: white;
+                text-decoration: none;
+            }
+            .signup{
+                display : inline-block;
+                
+                text-align: center;
+                font-weight : bold;
+                color: white;
+                font-size : 20px;
+                font-family : 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                background-color: rgb(33, 33, 33);
+                border: 1px solid white;
+                border-radius: 7px;
+                
+                margin-left: 80%;
+                
+                width: 100px;
+            }
+            .footer{
+                
+                background-color: rgb(33, 33, 33);
+                color: white;
+                text-align: center;
+                padding: 10px;
+                margin-top: 20px; /* Adjust this value based on your design */
+                clear: both
+            }
             .itemcontainer{
                 display: flex;
                 flex-grow : 1;
-                margin-top: 15px;
-                margin-left: 17px;
+                
+                margin: 7px 16px;
+                justify-content: space-between;
                 float: left;
                 
                  
@@ -60,7 +73,7 @@
                 background-color: rgb(33, 33, 33);
                 border: 1px solid white;
                 border-radius: 10px;
-                margin: 17 auto;
+                
                 padding: 10px;
                 width: 210px;
                 height: 245px;
@@ -102,22 +115,44 @@
             input:focus {
                 background-color: #cecece; /* Change this to your preferred color */
             }
-            
         </style>
-
+        <script>
+            function addItem() {
+                let price_and_stock = document.getElementById("itemTemplate");
+                let footer_template = document.getElementById("footerTemplate");
+                let footer = document.getElementById("footer");
+                let main = document.getElementById("main");
+                for (let i = 0; i < 100; i++) {
+                    let clon = price_and_stock.content.cloneNode(true);
+                    let itemprice_itemstock = clon.querySelector("p");
+                    itemprice_itemstock.textContent = "Price: " + i + " | Stock: " + i;
+            
+                    main.appendChild(clon);
+                    
+                }
+                let footer_content = footer_template.content.cloneNode(true);
+                footer.appendChild(footer_content);
+            }
+            
+            window.onload = addItem;
+        </script>
+        
         <title>Home</title>
     </head>  
     
     <body>
         <header>
+           
             <h1>Home</h1>
+            <button class = "signup">
+                <a href= "http://localhost:8000/test2">Sign up</a>
+            </button>
             <hr>
-            <a href="http://localhost:8000/test2">Account</a>
-            <hr>
+        
         </header>
         
-        <main>
-            <template>
+        <main id = "main">
+            <template id = "itemTemplate">
                 <div class = "itemcontainer">
                     <div class="itemcard">
                         <img src="https://i.ytimg.com/vi/_3OUQTruQRE/maxresdefault.jpg" alt="image">
@@ -129,11 +164,18 @@
                 </div>
                 
             </template>
+            
         </main>
         
-        <footer>
-            <hr>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus maiores dolores perspiciatis dolorum? Ab fugit non quas. Earum expedita totam magnam, veniam quod optio temporibus nesciunt quia ipsa, unde fugit.</p>
+        <footer id = "footer">
+            <template id = "footerTemplate">
+                <div class = "footer">
+                    <hr>
+                    <p class="footer">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas temporibus quibusdam doloremque velit magnam autem modi ipsam nam maiores? Odio consectetur doloribus tenetur iste fugiat explicabo sequi amet distinctio! </p>
+                    
+                </div>
+            </template>
         </footer>
     </body>
+    
 </html>

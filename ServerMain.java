@@ -10,7 +10,7 @@ public class ServerMain {
   public static void main(String[] args) throws IOException {
     HttpServer httpServer = HttpServer.create(
       new InetSocketAddress("localhost", 8000),
-      1
+      100
     );
     httpServer.createContext("/test", new Handler());
     httpServer.createContext("/test2", new Handler());
