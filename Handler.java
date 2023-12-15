@@ -8,8 +8,11 @@ import com.sun.net.httpserver.HttpHandler;
 public class Handler implements HttpHandler{
         @Override
         public void handle(HttpExchange t) throws IOException {
+
             String main_html;
+
             if(t.getRequestURI().toString().equals("/test")){
+
                 BufferedReader bf = new BufferedReader(new FileReader("FrontEnd\\index.html"));
                 StringBuilder sb = new StringBuilder();
                 String line = bf.readLine();
@@ -19,7 +22,9 @@ public class Handler implements HttpHandler{
                 }
                 main_html = sb.toString();
                 bf.close();
+
             }else{
+
                 BufferedReader bf = new BufferedReader(new FileReader("FrontEnd\\Account.html"));
                 StringBuilder sb = new StringBuilder();
                 String line = bf.readLine();
@@ -29,6 +34,7 @@ public class Handler implements HttpHandler{
                 }
                 main_html = sb.toString();
                 bf.close();
+                
             }
                     
            
