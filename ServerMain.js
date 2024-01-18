@@ -7,10 +7,14 @@ server = http.createServer(function (req, res) {
   
   var urlPath = url.parse(req.url).pathname;
   var htmlFiles = ['Account.html', 'index.html', 'BetterFrontPage.html', 'Business_Page.html']
+
   if(urlPath == '/') {
     urlPath = path.join(urlPath, 'index.html');
   }
-  if (urlPath in htmlFiles){
+
+  console.log(urlPath.substring(1));
+  
+  if (htmlFiles.includes(urlPath.substring(1))){
     var htmlpath = path.join(__dirname, 'FrontEnd', urlPath);
 
     console.log(htmlpath);
@@ -23,11 +27,5 @@ server = http.createServer(function (req, res) {
       res.end();
     });
   }
-  
-  
-  //res.writeHead(200, {'Content-Type': 'text/html'});
-  //res.write();
-  //res.end(handler.importHtmlFiles(res));
-  //var urlPath = url.parse(req.url).pathname;
-  //var htmlPath = path.join( 'FrontEnd/', urlPath, '.html');
+
 }).listen(8000);
