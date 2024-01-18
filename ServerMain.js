@@ -6,6 +6,7 @@ var handler = require('./Handler.js');
 server = http.createServer(function (req, res) {
   
   var urlPath = url.parse(req.url).pathname;
+  
   var htmlFiles = ['Account.html', 'index.html', 'BetterFrontPage.html', 'Business_Page.html']
 
   if(urlPath == '/') {
@@ -13,7 +14,7 @@ server = http.createServer(function (req, res) {
   }
 
   console.log(urlPath.substring(1));
-  
+
   if (htmlFiles.includes(urlPath.substring(1))){
     var htmlpath = path.join(__dirname, 'FrontEnd', urlPath);
 
