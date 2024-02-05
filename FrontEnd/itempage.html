@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+        <meta charset="UTF-8">
+        <style>
+            body{
+                background-color : rgb(33, 33, 33);
+                background-size: cover;
+                margin: 0px;
+            }
+            h1{
+                color: white;
+                text-align: center;
+                
+            }
+            h2{
+                color: white;
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            h3{
+                color: white;
+                margin-left: 10px;
+                text-align: left;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            p{
+                color: white;
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            a{
+                color: white;
+                text-decoration: none;
+            }
+            .signup{
+                display : inline-block;
+                
+                text-align: center;
+                font-weight : bold;
+                color: white;
+                font-size : 20px;
+                font-family : 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                background-color: rgb(33, 33, 33);
+                border: 1px solid white;
+                border-radius: 7px;
+                
+                margin-left: 80%;
+                
+                width: 100px;
+            }
+            .footer{
+                
+                background-color: rgb(33, 33, 33);
+                color: white;
+                text-align: center;
+                padding: 10px;
+                margin-top: 20px; /* Adjust this value based on your design */
+                clear: both
+            }
+            .itemcontainer{
+                display: flex;
+                flex-grow : 1;
+                
+                margin: 7px 16px;
+                justify-content: space-between;
+                float: left;
+                
+                 
+            }
+            .itemcard{
+                
+                background-color: rgb(33, 33, 33);
+                border: 1px solid white;
+                border-radius: 10px;
+                
+                padding: 10px;
+                width: 210px;
+                height: 245px;
+                float: left;
+                
+                
+                text-align: center; 
+                color:  rgb(220,220,220);
+            }
+            .itemcard img{
+                margin-left: auto;
+                margin-right: auto;
+                border: 2px solid grey;
+                width: 145px;
+                height: 100px;
+            }
+            .itemcard p.name{ 
+                width: 200px;
+                height: 20px;
+                text-align: center;
+                font-size: 1.em;
+                overflow: auto;
+            }
+            .itemcard p.price{
+                font-size: 0.8em;
+            }
+            
+            .itemcard p.description{ 
+                  
+                background-color: rgb(33, 33, 33);
+                width: 200px;
+                height: 50px;
+                margin: 4px;
+                border: 1px solid white;
+                border-radius: 10px;
+                font-size: 0.8em;
+                overflow: auto;
+            }
+            input:focus {
+                background-color: #cecece; /* Change this to your preferred color */
+            }
+        </style>
+        
+        <title>Home</title>
+    </head>  
+    
+    <body>
+        <header>
+           
+            <h1>Home</h1>
+            <button class = "signup">
+                <a href= "http://localhost:8000/Account.html">Sign up</a>
+            </button>
+            <button>
+                <a onclick="testConnection()">test connection</a>
+            </button>
+            <hr>
+        
+        </header>
+        
+        <main id = "main">
+            <template id = "itemTemplate">
+                <div class = "itemcontainer">
+                    <div class="itemcard">
+                        <img src="https://i.ytimg.com/vi/_3OUQTruQRE/maxresdefault.jpg" alt="image">
+                        <h5 class="name">title</h5>
+                        <p class="price">Price: Price    |     Stock: stock</p>
+                        
+                        <p class="description">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas temporibus quibusdam doloremque velit magnam autem modi ipsam nam maiores? Odio consectetur doloribus tenetur iste fugiat explicabo sequi amet distinctio! </p>
+                    </div>
+                </div>
+                
+            </template>
+            
+        </main>
+        
+        <footer id = "footer">
+            <template id = "footerTemplate">
+                <div class = "footer">
+                    <hr>
+                    <p class="footer">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas temporibus quibusdam doloremque velit magnam autem modi ipsam nam maiores? Odio consectetur doloribus tenetur iste fugiat explicabo sequi amet distinctio! </p>
+                    
+                </div>
+            </template>
+        </footer>
+    </body>
+    <script src="ServerMain.js" defer></script>
+</html>
