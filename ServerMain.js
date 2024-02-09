@@ -7,9 +7,9 @@ var app = express();
 
 app.use(express.static(path.join(__dirname, 'FrontEnd')));
 
-/*app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'FrontEnd', 'BetterFrontPage.html'));
-});*/
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'FrontEnd', 'MainPage.html'));
+});
 
 app.get('/Handler.js', function (req, res) {
   res.sendFile(path.join(__dirname, 'Handler.js'));
