@@ -40,6 +40,7 @@ function accounts(){
     if (error) return console.error(error.message);
     resultFinal = results;
   });
+  console.log(resultFinal);
   while(resultFinal === undefined){
     if(resultFinal !== undefined){
       return resultFinal;
