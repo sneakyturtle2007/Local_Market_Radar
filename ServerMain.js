@@ -28,18 +28,27 @@ var con = mysql.createConnection({
   password: "root",
   database: "Main"
 });
-var accresult;
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
+
+con.connect((err) => {
+    if (err) return console.error(err.message);
+  });  
+
+function accounts(){
+  var sql = "SELECT * FROM accounts";
+  var resultFinal;
+  con.query(sql, [true], (error, results, fields) => {
+    if (error) return console.error(error.message);
+    resultFinal = results;
+  });
+  while(resultFinal === undefined){
+    if(resultFinal !== undefined){
+      return resultFinal;
+    }
+  } 
  
-}); 
-con.query("SELECT * FROM accounts", function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-    accresult = result;
-    
-});
+}
+
+module.exports = accounts;
 
 
 /*
