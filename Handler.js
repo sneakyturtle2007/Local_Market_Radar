@@ -1,10 +1,12 @@
-const ServerMain = require('./ServerMain.js');
+import { accounts as _accounts } from 'ServerMain.js';
 
 function addItem() {
     
-    let accounts = accounts();
+    let accounts = _accounts();
 
-    while (accounts === undefined) {
+    while (true) {
+        console.log("Waiting for accounts to be defined");
+        
         if (accounts !== undefined) { 
             let price_and_stock = document.getElementById("itemTemplate");
             let footer_template = document.getElementById("footerTemplate");
@@ -26,7 +28,7 @@ function addItem() {
             break;
         }
     }
-
+    
    
 }
 

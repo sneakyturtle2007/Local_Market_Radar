@@ -1,26 +1,18 @@
 var express = require('express');
-var path = require('path');
-var filesystem = require('fs');
-const mysql = require('mysql2');
 var app = express();
+var path = require('path');
 
-
-app.use(express.static(path.join(__dirname, 'FrontEnd')));
+app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'FrontEnd', 'MainPage.html'));
-});
-
-app.get('/Handler.js', function (req, res) {
-  res.sendFile(path.join(__dirname, 'Handler.js'));
+  res.render('MainPage');
 });
 
 app.listen(8000, function () {
   console.log('App listening on port 8000!');
 });
 
-
-
+const mysql = require('mysql2');
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -28,27 +20,25 @@ var con = mysql.createConnection({
   password: "root",
   database: "Main"
 });
-
+console.log("hello")
+var sql = "SELECT * FROM accounts";
+var resultFinal;
 con.connect((err) => {
-    if (err) return console.error(err.message);
-  });  
-
-function accounts(){
-  var sql = "SELECT * FROM accounts";
-  var resultFinal;
+  if (err) return console.error(err.message); 
   con.query(sql, [true], (error, results, fields) => {
     if (error) return console.error(error.message);
     resultFinal = results;
   });
-  console.log(resultFinal);
-  while(resultFinal === undefined){
-    if(resultFinal !== undefined){
-      return resultFinal;
-    }
-  } 
- 
-}
+});  
 
+console.log(resultFinal);
+while(resultFinal === undefined){
+  if(resultFinal !== undefined){
+    return resultFinal;
+  }
+} 
+
+console.log(accounts());
 module.exports = accounts;
 
 
