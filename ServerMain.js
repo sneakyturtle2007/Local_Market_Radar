@@ -1,45 +1,69 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+const mysql = require('mysql2');
+
+class item{
+  constructor(name, price, stock, description, image){
+    this.name = name;
+    this.price = price;
+    this.stock = stock;
+    this.description = description;
+    this.image = image;
+  }
+}
+function createItem(name, price, description, image){
+  return new item(name, price, description, image);
+}
 
 app.set('view engine', 'ejs');
 
+app.set('views', path.join(__dirname, 'FrontEnd'));
+
+app.use(express.static(path.join(__dirname, 'FrontEnd')));
+
 app.get('/', function (req, res) {
-  res.render('MainPage');
+  res.sendFile(path.join(__dirname, 'FrontEnd', 'MainPage.html'));
 });
+
+app.get('/itempage', function (req, res) {
+  var items = [];
+  for(var i = 0; i < 10; i++){
+    items.push(createItem('Item' + i, 100 + i, 0,  'This is item ' + i, 'https://via.placeholder.com/150'));
+  }
+
+
+  res.render('itempage',{items : items});
+});
+
+
+/*
+app.get('/Handler.js', function (req, res) {
+  res.sendFile(path.join(__dirname, 'Handler.js'));
+});
+*/
 
 app.listen(8000, function () {
   console.log('App listening on port 8000!');
 });
 
-const mysql = require('mysql2');
 
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "Main"
-});
-console.log("hello")
-var sql = "SELECT * FROM accounts";
-var resultFinal;
+
+/*
 con.connect((err) => {
   if (err) return console.error(err.message); 
-  con.query(sql, [true], (error, results, fields) => {
-    if (error) return console.error(error.message);
-    resultFinal = results;
-  });
 });  
 
-console.log(resultFinal);
-while(resultFinal === undefined){
-  if(resultFinal !== undefined){
-    return resultFinal;
-  }
-} 
+function availableItems(){
+  app.get('/Products', (req, res) => {
+    con.query("SELECT * FROM products", (err, result, fields) => {
+      if (err) throw err;
+      res.json(result);
+    });
+  });
+}
 
-console.log(accounts());
-module.exports = accounts;
+module.exports = availableItems;*/
 
 
 /*

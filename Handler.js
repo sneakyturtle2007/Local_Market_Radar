@@ -1,35 +1,42 @@
-import { accounts as _accounts } from 'ServerMain.js';
 
 function addItem() {
     
-    let accounts = _accounts();
+    let products = [];
 
-    while (true) {
-        console.log("Waiting for accounts to be defined");
-        
-        if (accounts !== undefined) { 
-            let price_and_stock = document.getElementById("itemTemplate");
-            let footer_template = document.getElementById("footerTemplate");
+    //ServerMain.availableItems();
 
-            let footer = document.getElementById("footer");
-            let main = document.getElementById("main");
+   /* fetch('/Products').then(response => {
+        return response.json();
+    }).then(data => {   
+        products = JSON.parse(data);
+    }).catch(err => {
+        console.log(err);
+    });*/
 
-            for (let i = 0; i < 100; i++) {
-                let clon = price_and_stock.content.cloneNode(true);
-                let itemprice_itemstock = clon.querySelector("p");
-                let textcontent1 = "Price: " + i + " | Stock: " + i + accountsu;
-                itemprice_itemstock.textContent = textcontent1;
+    var success = false;
 
-                main.appendChild(clon);
-                
-            }
-            let footer_content = footer_template.content.cloneNode(true);
-            footer.appendChild(footer_content);
-            break;
-        }
+    if (products !== undefined){
+        success = true;
     }
     
-   
+    let price_and_stock = document.getElementById("itemTemplate");
+    let footer_template = document.getElementById("footerTemplate");
+
+    let footer = document.getElementById("footer");
+    let main = document.getElementById("main");
+
+    for (let i = 0; i < 100; i++) {
+        let clon = price_and_stock.content.cloneNode(true);
+        let itemprice_itemstock = clon.querySelector("p");
+        let textcontent1 = "Price: " + i + " | Stock: " + i;
+        itemprice_itemstock.textContent = textcontent1;
+
+        main.appendChild(clon);
+        
+    }
+    let footer_content = footer_template.content.cloneNode(true);
+    footer.appendChild(footer_content);
+
 }
 
 window.onload = addItem;

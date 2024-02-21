@@ -128,14 +128,12 @@
             <button class = "signup">
                 <a href= "http://localhost:8000/Account.html">Sign up</a>
             </button>
-            <button>
-                <a onclick="testConnection()">test connection</a>
-            </button>
             <hr>
         
         </header>
         
         <main id = "main">
+            <!--
             <template id = "itemTemplate">
                 <div class = "itemcontainer">
                     <div class="itemcard">
@@ -148,7 +146,22 @@
                 </div>
                 
             </template>
-            
+            -->
+
+            <% items.forEach(function(item){ %> 
+
+                <div class = "itemcontainer">
+                    <div class="itemcard">
+                        <img src=item.image alt="image">
+                        <h5 class="name"> <%= item.name %> </h5>
+                        <p class="price">Price: <%= item.price %>    |     Stock: <%= item.stock %>  </p>
+                        
+                        <p class="description">Description: <%= item.description =%> </p>
+                    </div>
+                </div>
+
+            <% }); %>
+           
         </main>
         
         <footer id = "footer">
@@ -161,5 +174,5 @@
             </template>
         </footer>
     </body>
-    <script src="Handler.js" defer></script>
+    
 </html>
