@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-const mysql = require('mysql2');
+//const mysql = require('mysql2');
 
 class item{
   constructor(name, price, stock, description, image){
