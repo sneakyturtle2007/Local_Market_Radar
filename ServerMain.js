@@ -29,7 +29,7 @@ app.get('/', function (req, res) {
 app.get('/itempage', function (req, res) {
   var items = [];
   for(var i = 0; i < 10; i++){
-    items.push(createItem('Item' + i, 100 + i, 0,  'This is item ' + i, 'https://via.placeholder.com/150'));
+    items.push(createItem('Item' + i, 100 + i, 0,  'This is item ' + i, "https://i.ytimg.com/vi/_3OUQTruQRE/maxresdefault.jpg" ));
   }
 
 
