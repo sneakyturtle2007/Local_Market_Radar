@@ -1,104 +1,34 @@
-var express = require('express');
-var app = express();
-var path = require('path');
-//const mysql = require('mysql2');
+// LIBRARIES: Express and Path
+  var express = require('express');
+  var path = require('path');
+// LOCAL FILE IMPORTS: Handler.js
+  var ItemPage = require('./Handler.js');
+// SERVER SETUP
+  var app = express();
 
-class item{
-  constructor(name, price, stock, description, image){
-    this.name = name;
-    this.price = price;
-    this.stock = stock;
-    this.description = description;
-    this.image = image;
-  }
-}
-function createItem(name, price, stock, description, image){
-  return new item(name, price,stock, description, image);
-}
+  app.set('view engine', 'ejs');
 
-app.set('view engine', 'ejs');
+  app.set('views', path.join(__dirname, 'FrontEnd'));
 
-app.set('views', path.join(__dirname, 'FrontEnd'));
+  app.use(express.static(path.join(__dirname, 'FrontEnd')));
 
-app.use(express.static(path.join(__dirname, 'FrontEnd')));
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'FrontEnd', 'MainPage.html'));
-});
-
-app.get('/itempage', function (req, res) {
-  var items = [];
-  for(var i = 0; i < 10; i++){
-    items.push(createItem('Item' + i, 100 + i, 0 ,  'This is item ' + i, 'https://i.ytimg.com/vi/_3OUQTruQRE/maxresdefault.jpg' ));
-  }
-
-
-  res.render('itempage',{items : items});
-});
-
-
-/*
-app.get('/Handler.js', function (req, res) {
-  res.sendFile(path.join(__dirname, 'Handler.js'));
-});
-*/
-
-app.listen(8000, function () {
-  console.log('App listening on port 8000!');
-});
-
-
-
-/*
-con.connect((err) => {
-  if (err) return console.error(err.message); 
-});  
-
-function availableItems(){
-  app.get('/Products', (req, res) => {
-    con.query("SELECT * FROM products", (err, result, fields) => {
-      if (err) throw err;
-      res.json(result);
-    });
+  app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'FrontEnd', 'MainPage.html'));
   });
-}
 
-module.exports = availableItems;*/
+  app.listen(8000, function () {
+    console.log('App listening on port 8000!');
+  });
+// PAGES SETUP
 
+  // itempage 
+  app.get('/itempage', function (req, res) {
 
-/*
-server = http.createServer(function (req, res) {
-  
-  var urlPath = url.parse(req.url).pathname;
-  
-  var htmlFiles = ['Account.html', 'index.html', 'BetterFrontPage.html', 'Business_Page.html']
+    var items = ItemPage.getItems();
 
-  if(urlPath == '/') {
-    urlPath = path.join(urlPath, 'BetterFrontPage.html');
-  }
+    var renderPage = function(){ res.render('itempage',{items : items}); }
 
-  console.log(urlPath.substring(1));
-
-  if (htmlFiles.includes(urlPath.substring(1))){
-    var htmlpath = path.join(__dirname, 'FrontEnd', urlPath);
-
-    console.log(htmlpath);
-
-    filesystem.readFile(htmlpath, function(err, data) {
-      if(err) console.log(err);
-      res.writeHead(200, {'Content-Type': 'text/html'});
-      res.write(data);
-      res.end();
-    });
+    renderPage();
     
-  }else if (urlPath === '/Handler.js') {
-    filesystem.readFile('Handler.js', 'utf8', (err, data) => {
-      if(err) console.log(err);
-      res.writeHead(200, { 'Content-Type': 'application/javascript' });
-      res.write(data);
-      res.end();
-    });
-  }
+  });
 
-}).listen(8000);
-*/

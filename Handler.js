@@ -1,42 +1,22 @@
-
-function addItem() {
-    
-    let products = [];
-
-    //ServerMain.availableItems();
-
-   /* fetch('/Products').then(response => {
-        return response.json();
-    }).then(data => {   
-        products = JSON.parse(data);
-    }).catch(err => {
-        console.log(err);
-    });*/
-
-    var success = false;
-
-    if (products !== undefined){
-        success = true;
+class item{
+    constructor(name, price, stock, description, image){
+      this.name = name;
+      this.price = price;
+      this.stock = stock;
+      this.description = description;
+      this.image = image;
     }
-    
-    let price_and_stock = document.getElementById("itemTemplate");
-    let footer_template = document.getElementById("footerTemplate");
+  }
 
-    let footer = document.getElementById("footer");
-    let main = document.getElementById("main");
-
-    for (let i = 0; i < 100; i++) {
-        let clon = price_and_stock.content.cloneNode(true);
-        let itemprice_itemstock = clon.querySelector("p");
-        let textcontent1 = "Price: " + i + " | Stock: " + i;
-        itemprice_itemstock.textContent = textcontent1;
-
-        main.appendChild(clon);
-        
-    }
-    let footer_content = footer_template.content.cloneNode(true);
-    footer.appendChild(footer_content);
-
+function createItem(name, price, stock, description, image){
+    return new item(name, price,stock, description, image);
 }
 
-window.onload = addItem;
+function getItems(){
+    var items = [];
+    for(var i = 0; i < 10; i++){
+    items.push(createItem('Item' + i, 100 + i, 0 ,  'This is item ' + i, 'https://i.ytimg.com/vi/_3OUQTruQRE/maxresdefault.jpg' ));
+    }
+    return items;
+}
+module.exports = {getItems};
