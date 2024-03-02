@@ -2,7 +2,7 @@
   var express = require('express');
   var path = require('path');
 // LOCAL FILE IMPORTS: Handler.js
-  var ItemPage = require('./Handler.js');
+  var ItemPage = require('./ItemPage.js');
 // SERVER SETUP
   var app = express();
 
@@ -22,13 +22,13 @@
 // PAGES SETUP
 
   // itempage 
-  app.get('/itempage', function (req, res) {
+    app.get('/itempage', function (req, res) {
 
-    var items = ItemPage.getItems();
+      var items = ItemPage.getItems();
 
-    var renderPage = function(){ res.render('itempage',{items : items}); }
+      var renderPage = function(){ res.render('itempage',{items : items}); }
 
-    renderPage();
-    
-  });
+      renderPage();
+      
+    });
 

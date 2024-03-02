@@ -1,3 +1,5 @@
+const DataBase = require('./DataBase.js');
+
 class item{
     constructor(name, price, stock, description, image){
       this.name = name;
@@ -19,4 +21,5 @@ function getItems(){
     }
     return items;
 }
+
 module.exports = {getItems};
