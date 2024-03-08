@@ -1,4 +1,4 @@
-const DataBase = require('./DataBase.js');
+const DB = require('./DataBase.js');
 
 class item{
     constructor(name, price, stock, description, image){
@@ -14,11 +14,15 @@ function createItem(name, price, stock, description, image){
     return new item(name, price,stock, description, image);
 }
 
-function getItems(){
+
+async function getItems(){
+    let Products =  await DB.getProducts(1, 'none');
     var items = [];
-    for(var i = 0; i < 10; i++){
-    items.push(createItem('Item' + i, 100 + i, 0 ,  'This is item ' + i, 'https://i.ytimg.com/vi/_3OUQTruQRE/maxresdefault.jpg' ));
+    
+    for(var i = 0; i < Products.length; i++){
+      items.push(createItem(Products[i].ProductName, Products[i].ProductPrice, Products[i].ProductStock ,  Products[i].ProductDescription, 'https://i.ytimg.com/vi/_3OUQTruQRE/maxresdefault.jpg' ));
     }
+
     return items;
 }
 

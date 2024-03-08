@@ -22,12 +22,11 @@
 // PAGES SETUP
 
   // itempage 
-    app.get('/itempage', function (req, res) {
+    app.get('/itempage', async function (req, res) {
 
-      var items = ItemPage.getItems();
-
+      var items = await ItemPage.getItems();
+      console.log(items);
       var renderPage = function(){ res.render('itempage',{items : items}); }
-
       renderPage();
       
     });
