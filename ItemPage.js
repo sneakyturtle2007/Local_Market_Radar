@@ -15,8 +15,8 @@ function createItem(name, price, stock, description, image){
 }
 
 
-async function getItems(){
-    let Products =  await DB.getProducts(1, 'none');
+async function getItems(BusinessID, ProductName){
+    let Products =  await DB.getProducts(BusinessID, ProductName);
     var items = [];
     
     for(var i = 0; i < Products.length; i++){

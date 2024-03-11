@@ -4,16 +4,23 @@ const con = mysql.createConnection({
     user: 'root',
     password: 'root',   
     database: 'Main'
-    });
+});
 con.connect(function(err) {
         if (err) throw err;
-        console.log("Connected!");
-        
-    });
+        console.log("Connected!");    
+});
+
+
 
 async function getProducts(BusinessID, ProductName) {
-    let sql = "SELECT * FROM products";
-    
+    let sql;
+    if(BusinessID > 0){
+        sql = "SELECT * FROM products WHERE ProductName LIKE '%" + ProductName + "%' AND BusinessID LIKE '%" + BusinessID + "%'";
+    }else if(ProductName != ''){
+        sql = "SELECT * FROM products WHERE ProductName LIKE '%" + ProductName + "%'";
+    }else{
+        sql = "SELECT * FROM products";
+    }
     
     let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
     console.log(results);
@@ -23,6 +30,5 @@ async function getProducts(BusinessID, ProductName) {
     return await results;
 }
 
-getProducts(1, 'none');
 
 module.exports = {getProducts};

@@ -24,7 +24,7 @@
   // itempage 
     app.get('/itempage', async function (req, res) {
 
-      var items = await ItemPage.getItems();
+      var items = await ItemPage.getItems(0, '');
       console.log(items);
       var renderPage = function(){ res.render('itempage',{items : items}); }
       renderPage();
