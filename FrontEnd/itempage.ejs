@@ -34,6 +34,7 @@
                 color: white;
                 text-decoration: none;
             }
+            
             .signup{
                 display : inline-block;
                 
@@ -50,6 +51,39 @@
                 
                 width: 100px;
             }
+            .searchbar{
+                display: flex;
+                justify-content: center;
+                
+            }
+            .searchbar input{
+                width: 600px;
+                height: 30px;
+                margin-top: 20px;
+                border-radius: 2px;
+                border: 1px solid white;
+                padding: 5px;
+                font-size: 1em;
+            }
+            .searchButton {
+                display:flex;
+                justify-content: center;
+                margin-top: 20px;
+                border-radius: 2px;
+                width: 80px;
+                height: 42px;
+                
+            }
+            .searchButton:hover{
+                background-color: rgb(66,66,66);
+                
+            }
+            .searchButton p{
+                text-align: center;
+                font-size: 13px;
+                font-weight: bold;
+            }
+            
             .footer{
                 
                 background-color: rgb(33, 33, 33);
@@ -117,7 +151,51 @@
                 background-color: #cecece; /* Change this to your preferred color */
             }
         </style>
-        
+        <!--<script>
+            const items = require('LOCAL_MARKET_RADAR/ItemPage.js');
+            async function displayItems(items){
+                var main = document.getElementById("MainItemContainer");
+                main.innerHTML = "";
+
+                items.forEach(function(item){
+                    var itemContainer = document.createElement("div");
+                    itemContainer.className = "itemcontainer";
+
+                    var itemCard = document.createElement("div");
+                    itemCard.className = "itemcard";
+
+                    var img = document.createElement("img");
+                    img.src = item.image;
+                    img.alt = "image";
+
+                    var name = document.createElement("h5");
+                    name.className = "name";
+                    name.innerHTML = item.name;
+                
+                    var price = document.createElement("p");
+                    price.className = "price";
+                    price.innerHTML = "Price: " + item.price + " | Stock: " + item.stock;
+
+                    var description = document.createElement("p");
+                    description.className = "description";
+                    description.innerHTML = "Description: " + item.description;
+
+                    itemCard.appendChild(img);
+                    itemCard.appendChild(name);
+                    itemCard.appendChild(price);
+                    itemCard.appendChild(description);
+                    itemContainer.appendChild(itemCard);
+                    main.appendChild(itemContainer);
+                });
+            }
+            const searchButton = document.getElementById("searchButton");
+            searchButton.addEventListener("click", async function(){
+                const search = document.getElementById("search").value;
+                const items = await items.getItems(0, search.toString());
+                displayItems(items);
+            });
+
+        </script>-->
         <title>Home</title>
     </head>  
     
@@ -133,20 +211,39 @@
         </header>
         
         <main id = "main">
+            
+            <div class = "searchbar">  
+                <input type="text" id="search" placeholder="Search for items..">
 
-            <% items.forEach(function(item){ %> 
-
-                <div class = "itemcontainer">
-                    <div class="itemcard">
-                        <img src= <%= item.image %> alt="image">
-                        <h5 class="name"> <%= item.name %> </h5>
-                        <p class="price">Price: <%= item.price %>    |     Stock: <%= item.stock %>  </p>
-                        
-                        <p class="description">Description: <%= item.description %> </p>
-                    </div>
+                
+                <div class = "searchButton">
+                    <p id="searchText">Search</button>
                 </div>
+                
+                    
+            </div>
 
-            <% }); %>
+            
+            <div class = "searchSettings">
+                <ul>
+                    <!--<li><button id="filterButton">Filter</button></li>-->
+                </ul>
+            </div>
+            
+            <div id = "MainItemContainer">
+                <% items.forEach(function(item){ %> 
+                    <div class = "itemcontainer">
+                        <div class="itemcard">
+                            <img src= <%= item.image %> alt="image">
+                            <h5 class="name"> <%= item.name %> </h5>
+                            <p class="price">Price: <%= item.price %>    |     Stock: <%= item.stock %>  </p>
+                            
+                            <p class="description">Description: <%= item.description %> </p>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+            
            
         </main>
         

@@ -30,5 +30,4 @@ async function getProducts(BusinessID, ProductName) {
     return await results;
 }
 
-
 module.exports = {getProducts};
