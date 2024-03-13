@@ -30,4 +30,17 @@
       renderPage();
       
     });
+// API SETUP
 
+  // getItems
+    app.get('/api/items', async function (req, res) {
+      var search = req.query.search;
+      try{
+        var items = await ItemPage.getItems(0, search);
+        console.log("API ITEMS");
+        res.json(items);
+      }catch(err){
+        console.log(err);
+      }
+      
+    });
