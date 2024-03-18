@@ -28,5 +28,14 @@
         }
         return await results;
     }
+// FUNCTION: addProduct
+    async function addProduct( ProductName, ProductPrice, ProductStock, ProductDescription) {
+        let sql = "INSERT INTO products ( ProductName, ProductPrice, ProductStock, ProductDescription) VALUES (" + BusinessID + "', '" + ProductName + "', '" + ProductPrice + "', '" + ProductStock + "', '" + ProductDescription + "')";
+        let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+        if(results.affectedRows > 0){
+            return true;
+        }
+        return false;
+    }
 // EXPORTS
     module.exports = {getProducts};

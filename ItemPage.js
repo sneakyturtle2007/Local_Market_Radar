@@ -8,7 +8,7 @@ class item{
       this.description = description;
       this.image = image;
     }
-  }
+}
 
 function createItem(name, price, stock, description, image){
     return new item(name, price,stock, description, image);
