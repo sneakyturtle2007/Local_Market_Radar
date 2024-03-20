@@ -37,4 +37,5 @@ Products table -
 | ProductPrice       | double       | YES  |     | NULL    |       |
 | ProductStock       | int          | YES  |     | NULL    |       |
 | ProductDescription | varchar(800) | YES  |     | NULL    |       |
+| ProductImage       | varchar(255) | YES  |     | NULL    |       |
 +--------------------+--------------+------+-----+---------+-------+
