@@ -29,13 +29,13 @@ Businesses table -
 +--------------+--------------+------+-----+---------+----------------+
 
 Products table - 
-+--------------------+--------------+------+-----+---------+-------+
-| Field              | Type         | Null | Key | Default | Extra |
-+--------------------+--------------+------+-----+---------+-------+
-| BusinessID         | int          | NO   | PRI | NULL    |       |
-| ProductName        | varchar(255) | YES  |     | NULL    |       |
-| ProductPrice       | double       | YES  |     | NULL    |       |
-| ProductStock       | int          | YES  |     | NULL    |       |
-| ProductDescription | varchar(800) | YES  |     | NULL    |       |
-| ProductImage       | varchar(255) | YES  |     | NULL    |       |
-+--------------------+--------------+------+-----+---------+-------+
++--------------------+--------------+------+-----+---------+--------------------+
+| Field              | Type         | Null | Key | Default | Extra              |
++--------------------+--------------+------+-----+---------+--------------------+
+| BusinessID         | int          | NO   | PRI | NULL    |   auto_increment   |
+| ProductName        | varchar(255) | YES  |     | NULL    |                    |
+| ProductPrice       | double       | YES  |     | NULL    |                    |
+| ProductStock       | int          | YES  |     | NULL    |                    |
+| ProductDescription | varchar(800) | YES  |     | NULL    |                    |
+| ProductImage       | varchar(255) | YES  |     | NULL    |                    |
++--------------------+--------------+------+-----+---------+--------------------+
