@@ -1,0 +1,40 @@
+All tables in database-
++----------------+
+| Tables_in_main |
++----------------+
+| accounts       |
+| businesses     |
+| products       |
++----------------+
+
+Accounts table - 
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| AccountName     | varchar(255) | NO   | PRI | NULL    |       |
+| AccountPasscode | varchar(255) | YES  |     | NULL    |       |
+| BusinessName    | varchar(255) | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+
+Businesses table - 
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| BusinessName | varchar(255) | YES  |     | NULL    |                |
+| Address      | varchar(255) | YES  |     | NULL    |                |
+| City         | varchar(255) | YES  |     | NULL    |                |
+| State        | varchar(255) | YES  |     | NULL    |                |
+| Country      | varchar(255) | YES  |     | NULL    |                |
+| BusinessID   | int          | NO   | PRI | NULL    | auto_increment |
++--------------+--------------+------+-----+---------+----------------+
+
+Products table - 
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| BusinessID         | int          | NO   | PRI | NULL    |       |
+| ProductName        | varchar(255) | YES  |     | NULL    |       |
+| ProductPrice       | double       | YES  |     | NULL    |       |
+| ProductStock       | int          | YES  |     | NULL    |       |
+| ProductDescription | varchar(800) | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
