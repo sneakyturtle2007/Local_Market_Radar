@@ -32,7 +32,7 @@
     });
 // API SETUP
 
-  // getting Products
+  // returns products for item page
     app.get('/api/items', async function (req, res) {
       var search = req.query.search;
       try{
@@ -43,3 +43,5 @@
       }
       
     });
+
+  // logging in
