@@ -3,6 +3,7 @@
   var path = require('path');
 // LOCAL FILE IMPORTS: Handler.js
   var ItemPage = require('./ItemPage.js');
+
 // SERVER SETUP
   var app = express();
 
@@ -45,3 +46,9 @@
     });
 
   // logging in
+    app.get('/api/login', async function (req, res) {
+      var username = req.query.username;
+      var password = req.query.password;
+      var result = await ItemPage.login(username, password);
+      res.json(result);
+    });
