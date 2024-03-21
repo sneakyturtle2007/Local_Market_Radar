@@ -1,4 +1,4 @@
-const DB = require('./DataBase.js');
+const DB = require('../DataBase.js');
 
 class item{
     constructor(name, price, stock, description, image){
