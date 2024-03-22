@@ -3,6 +3,7 @@
   var path = require('path');
 // LOCAL FILE IMPORTS: Handler.js
   var ItemPage = require('./FrontEnd_JavascriptFiles/ItemPage.js');
+  var Login= require('./FrontEnd_JavascriptFiles/Login.js');
 // SERVER SETUP
   var app = express();
 
@@ -19,7 +20,7 @@
   app.listen(8000, function () {
     console.log('App listening on port 8000!');
   });
-// PAGES SETUP
+// DYNAMIC PAGES SETUP
 
   // itempage 
     app.get('/itempage', async function (req, res) {
@@ -30,6 +31,8 @@
       renderPage();
       
     });
+
+
 // API SETUP
 
   // returns products for item page
@@ -48,6 +51,6 @@
     app.get('/api/login', async function (req, res) {
       var username = req.query.username;
       var password = req.query.password;
-      var result = await ItemPage.login(username, password);
+      var result = await Login.login(username, password);
       res.json(result);
     });
