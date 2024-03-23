@@ -160,7 +160,7 @@
             <header>
                 <h1 style="font-size: 56px; font-family: sans-serif;">Local Market Radar</h1>
                 <button class = "signup">
-                    <a href= "http://localhost:8000/Account.html">Sign up</a>
+                    <a href= "/Account">Sign up</a>
                 </button>
                 <hr>
             </header>
@@ -235,14 +235,14 @@
                         document.addEventListener("keypress", async function(event) {
                             if (event.keyCode == 13) {
                                 const search = document.getElementById("search").value;
-                                const items = await fetch("http://localhost:8000/api/items?search=" + search).then(res => res.json()).catch(err => console.log(err) );
+                                const items = await fetch("/api/items?search=" + search).then(res => res.json()).catch(err => console.log(err) );
                                 displayItems(items);
                             }
                           });
                         const searchButton = document.querySelector(".searchButton");
                         searchButton.addEventListener("click", async function(){
                             const search = document.getElementById("search").value;
-                            const items = await fetch("http://localhost:8000/api/items?search=" + search).then(res => res.json()).catch(err => console.log(err) );
+                            const items = await fetch("/api/items?search=" + search).then(res => res.json()).catch(err => console.log(err) );
                             displayItems(items);
                         });
                     </script>
