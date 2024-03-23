@@ -32,7 +32,7 @@
       
     });
 
-// REGULAR PAGES SETUP
+// STATIC PAGES SETUP
 
   // login page
     app.get('/Login', async function (req, res) {
