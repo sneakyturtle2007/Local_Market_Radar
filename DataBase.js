@@ -16,8 +16,8 @@
 // TABLE - accounts
 
     // FUNCTION: createAccount
-        async function createAccount(name, password, businessName){
-            let sql = "INSERT INTO accounts (AccountName , AccountPasscode, BusinessName) VALUES ('" + name + "', '" + password + "', '" + businessName + "')";
+        async function createAccount(name, password){
+            let sql = "INSERT INTO accounts (AccountName , AccountPasscode, BusinessName) VALUES ('" + name + "', '" + password + "', 'None')";
             let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
             if(await results.affectedRows > 0){
                 return true;

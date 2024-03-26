@@ -22,40 +22,13 @@
                 </div>    
             </div>
             
+            <script src="Login.js"></script>
         </main>
         
-        <footer style="position: fixed; bottom: 0; width: 100%; text-align: center; color: white; font-family: sans-serif;">
+        <footer>
+            <hr>
             <p>Created by: Applewood-Softworks</p>
         </footer>
-        
-        <script>
-            const loginButton = document.getElementById("loginButton");
-            document.addEventListener("keypress", async function(event) {
-                if (event.keyCode == 13){
-                    let username = document.getElementById("Username").value;
-                    let password = document.getElementById("Password").value;
-                    var login = await fetch("/api/login?username=" + username + "&password=" + password).then(res => res.json()).catch(err => console.log(err) );
-                    if(login){
-                        window.location.href = "/itempage";
-                    }
-                    else{
-                        alert("Invalid username or password");
-                    }
-                }
-            });
-            loginButton.addEventListener("click", async function(){
-                let username = document.getElementById("Username").value;
-                let password = document.getElementById("Password").value;
-                var login = await fetch("/api/login?username=" + username + "&password=" + password).then(res => res.json()).catch(err => console.log(err) );
-                if(login){
-                    window.location.href = "/itempage";
-                }
-                else{
-                    alert("Invalid username or password");
-                }
-            });
-
-        </script>
     </body>
     
 </html>

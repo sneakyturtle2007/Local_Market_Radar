@@ -4,8 +4,9 @@
   var path = require('path');
   var fs = require('fs');
 // LOCAL FILE IMPORTS: Handler.js
-  var ItemPage = require('./FrontEnd_JavascriptFiles/ItemPage.js');
-  var Login = require('./FrontEnd_JavascriptFiles/Login.js');
+  var ItemPage = require('./Backend_NodeJS_Files/ItemPage.js');
+  var Login = require('./Backend_NodeJS_Files/Login.js');
+  var SignUp = require('./Backend_NodeJS_Files/SignUp.js');
 // SERVER SETUP
   var app = express();
 
@@ -37,11 +38,14 @@
     app.get('/Login', async function (req, res) {
       res.sendFile(path.join(__dirname, 'FrontEnd', 'Login', 'Login.html'));
     });
-  // account Page
+  // account page
     app.get('/Account', async function (req, res) {
       res.sendFile(path.join(__dirname, 'FrontEnd', 'Account.html'));
     });
-  
+  // signup page
+    app.get('/Signup', async function (req, res) {
+      res.sendFile(path.join(__dirname, 'FrontEnd','SignUp', 'Signup.html'));
+    });
 // API SETUP
 
   // returns products for item page
@@ -63,19 +67,32 @@
       var result = await Login.login(username, password);
       res.json(result);
     });
-
   
-const httpsOptions = {
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.cert')
-}
-const server = https.createServer(httpsOptions, app);
+  // signing up
+    app.get('/api/signup', async function (req, res) {
 
-const port = 443; 
+      var username = req.query.username;
+      var password = req.query.password;
+      console.log(username);
+      console.log(password);
+      var result = await SignUp.signup(username, password);
+      res.json(result);
+    });
+    
 
-server.listen(port, () => {
-  
-  console.log('Server is running on port: ' + port);
-}).on('error', function(err) {
-  console.log(err);
-});
+// SERVER STARTUP
+
+  const httpsOptions = {
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+  }
+  const server = https.createServer(httpsOptions, app);
+
+  const port = 443; 
+
+  server.listen(port, () => {
+    
+    console.log('Server is running on port: ' + port);
+  }).on('error', function(err) {
+    console.log(err);
+  });
