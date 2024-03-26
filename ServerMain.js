@@ -5,40 +5,39 @@
   var fs = require('fs');
 // LOCAL FILE IMPORTS: Handler.js
   var ItemPage = require('./FrontEnd_JavascriptFiles/ItemPage.js');
-  var Login= require('./FrontEnd_JavascriptFiles/Login.js');
+  var Login = require('./FrontEnd_JavascriptFiles/Login.js');
 // SERVER SETUP
   var app = express();
 
   app.set('view engine', 'ejs');
 
-  app.set('views', path.join(__dirname, 'FrontEnd'));
+  app.set('views', path.join(__dirname, 'FrontEnd', 'ItemPage'));
 
   app.use(express.static(path.join(__dirname, 'FrontEnd')));
-
-  app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, 'FrontEnd', 'MainPage.html'));
-  });
-
   
 // DYNAMIC PAGES SETUP
 
   // itempage 
-    app.get('/itempage', async function (req, res) {
+    app.get('/ItemPage', async function (req, res) {
 
       var items = await ItemPage.getItems(0, '');
       console.log(items);
-      var renderPage = function(){ res.render('itempage',{items : items}); }
+      var renderPage = function(){ res.render('ItemPage',{items : items}); }
       renderPage();
       
     });
 
 // STATIC PAGES SETUP
-
+  
+  // main page
+    app.get('/', async function (req, res) {
+      res.sendFile(path.join(__dirname, 'FrontEnd', 'MainPage.html'));
+    });
   // login page
     app.get('/Login', async function (req, res) {
-      res.sendFile(path.join(__dirname, 'FrontEnd', 'Login.html'));
+      res.sendFile(path.join(__dirname, 'FrontEnd', 'Login', 'Login.html'));
     });
-  // Account Page
+  // account Page
     app.get('/Account', async function (req, res) {
       res.sendFile(path.join(__dirname, 'FrontEnd', 'Account.html'));
     });
