@@ -14,8 +14,9 @@ Accounts table -
 | AccountName     | varchar(255) | NO   | PRI | NULL    |       |
 | AccountPasscode | varchar(255) | YES  |     | NULL    |       |
 | BusinessName    | varchar(255) | YES  |     | NULL    |       |
+| AccountEmail    | varchar(255) | YES  |     | NULL    |       |
+| AccountAddress  | varchar(255) | YES  |     | NULL    |       |
 +-----------------+--------------+------+-----+---------+-------+
-
 Businesses table - 
 +--------------+--------------+------+-----+---------+----------------+
 | Field        | Type         | Null | Key | Default | Extra          |

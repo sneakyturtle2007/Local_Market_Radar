@@ -10,7 +10,7 @@ document.addEventListener("keypress", async function(event) {
         }
         var login = await fetch("/api/signup?username=" + username + "&password=" + password).then(res => res.json()).catch(err => console.log(err) );
         if(login){
-            window.location.href = "/ItemPage";
+            window.location.href = "/Search";
         }
         else{
             alert("Invalid username or password");
@@ -27,7 +27,7 @@ loginButton.addEventListener("click", async function(){
     }
     var login = await fetch("/api/signup?username=" + username + "&password=" + password).then(res => res.json()).catch(err => console.log(err) );
     if(login){
-        window.location.href = "/ItemPage";
+        window.location.href = "/Search";
     }
     else{
         alert("Invalid username or password");

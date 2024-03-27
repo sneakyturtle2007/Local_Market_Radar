@@ -4,7 +4,7 @@
   var path = require('path');
   var fs = require('fs');
 // LOCAL FILE IMPORTS: Handler.js
-  var ItemPage = require('./Backend_NodeJS_Files/ItemPage.js');
+  var Search = require('./Backend_NodeJS_Files/Search.js');
   var Login = require('./Backend_NodeJS_Files/Login.js');
   var SignUp = require('./Backend_NodeJS_Files/SignUp.js');
 // SERVER SETUP
@@ -12,18 +12,18 @@
 
   app.set('view engine', 'ejs');
 
-  app.set('views', path.join(__dirname, 'FrontEnd', 'ItemPage'));
+  app.set('views', path.join(__dirname, 'FrontEnd', 'Search'));
 
   app.use(express.static(path.join(__dirname, 'FrontEnd')));
   
 // DYNAMIC PAGES SETUP
 
   // itempage 
-    app.get('/ItemPage', async function (req, res) {
+    app.get('/Search', async function (req, res) {
 
-      var items = await ItemPage.getItems(0, '');
+      var items = await Search.getItems(0, '');
       console.log(items);
-      var renderPage = function(){ res.render('ItemPage',{items : items}); }
+      var renderPage = function(){ res.render('Search',{items : items}); }
       renderPage();
       
     });
@@ -52,7 +52,7 @@
     app.get('/api/items', async function (req, res) {
       var search = req.query.search;
       try{
-        var items = await ItemPage.getItems(0, search);
+        var items = await Search.getItems(0, search);
         res.json(items);
       }catch(err){
         console.log(err);

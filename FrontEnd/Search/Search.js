@@ -47,3 +47,7 @@ searchButton.addEventListener("click", async function(){
     const items = await fetch("/api/items?search=" + search).then(res => res.json()).catch(err => console.log(err) );
     displayItems(items);
 });
+const settingsButton = document.querySelector(".settingsButton");
+settingsButton.addEventListener("click", async function(){
+    
+});
