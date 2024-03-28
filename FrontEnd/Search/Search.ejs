@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head> 
-        <meta charset="UTF-8">\
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="Search.css">
         <title>Search</title>
@@ -11,37 +11,52 @@
         <!--HEADER-->
             <header>
                 <h1 style="font-size: 56px; font-family: sans-serif;">Local Market Radar</h1>
-                <button class = "settingsButton">Settings</button>
+                    
+                    <button class = "settingsButton"onclick="openSettings()">&#9776;</button>
                 <hr>
             </header>
         <!--MAIN-->
-            <main id = "main">
-                <div class = "searchbar">  
-                    <input type="text" id="search" placeholder="Search for items..">
+            <main>
 
-                    <div class = "searchButton">
-                        <p id="searchText">Search</button>
+                <div id="mySidebar" class="sidebar">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()">&times;</a>
+                    <a href="/Profile">Profile</a>
+                    <a href="#">Services</a>
+                    <a href="#">Clients</a>
+                    <a href="#">Contact</a>
+                </div>
+                  
+
+                <div id= "main">
+                    
+                    <div class = "searchbar">  
+                        <input type="text" id="search" placeholder="Search for items..">
+
+                        <div class = "searchButton">
+                            <p id="searchText">Search</button>
+                        </div>
+                    </div>
+
+                    <div class = "searchSettings">
+                        <ul>
+                            <!--<li><button id="filterButton">Filter</button></li>-->
+                        </ul>
+                    </div>
+                    
+                    <div id = "MainItemContainer">
+                        <% items.forEach(function(item){ %> 
+                            <div class = "itemcontainer">
+                                <div class="itemcard">
+                                    <img src= <%= item.image %> alt="image">
+                                    <h5 class="name"> <%= item.name %> </h5>
+                                    <p class="price">Price: <%= item.price %>    |     Stock: <%= item.stock %>  </p>
+                                    <p class="description">Description: <%= item.description %> </p>
+                                </div>
+                            </div>
+                        <% }); %>
                     </div>
                 </div>
-
-                <div class = "searchSettings">
-                    <ul>
-                        <!--<li><button id="filterButton">Filter</button></li>-->
-                    </ul>
-                </div>
                 
-                <div id = "MainItemContainer">
-                    <% items.forEach(function(item){ %> 
-                        <div class = "itemcontainer">
-                            <div class="itemcard">
-                                <img src= <%= item.image %> alt="image">
-                                <h5 class="name"> <%= item.name %> </h5>
-                                <p class="price">Price: <%= item.price %>    |     Stock: <%= item.stock %>  </p>
-                                <p class="description">Description: <%= item.description %> </p>
-                            </div>
-                        </div>
-                    <% }); %>
-                </div>
 
                 <!--SEARCH SCRIPT -->
                 <script src="Search.js"></script>

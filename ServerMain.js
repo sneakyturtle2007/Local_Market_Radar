@@ -46,6 +46,10 @@
     app.get('/Signup', async function (req, res) {
       res.sendFile(path.join(__dirname, 'FrontEnd','SignUp', 'Signup.html'));
     });
+  // profile page
+    app.get('/Profile', async function (req, res) {
+      res.sendFile(path.join(__dirname, 'FrontEnd','Profile', 'Profile.html'));
+    });
 // API SETUP
 
   // returns products for item page

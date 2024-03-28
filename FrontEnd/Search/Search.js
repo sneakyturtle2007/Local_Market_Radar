@@ -51,3 +51,16 @@ const settingsButton = document.querySelector(".settingsButton");
 settingsButton.addEventListener("click", async function(){
     
 });
+
+
+
+/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+function openSettings() {
+    document.getElementById("mySidebar").style.width = "250px";
+}
+  
+  /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeSettings() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+}
