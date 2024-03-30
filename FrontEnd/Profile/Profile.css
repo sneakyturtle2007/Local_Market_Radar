@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(rgb(12, 12, 12), rgb(56, 65, 56)); 
+    background-color : rgb(33, 33, 33);; 
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -21,7 +21,19 @@ p {
     height: 100vh;
     width: 100vw;
     display: flex;
+    
     justify-content: center;
     align-items: center;
     
+}
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color : white;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
