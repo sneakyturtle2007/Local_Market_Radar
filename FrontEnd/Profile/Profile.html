@@ -7,11 +7,19 @@
     </head>
     <body>
         <header>
-            <button id="backbutton" onclick="window.location.href = '/Search';">Back</button>
+            
             <h1>Local Market Radar</h1>
+            <button class = "settingsButton"onclick="openSettings()">&#9776;</button>
             <hr>
         </header>
         <main>
+            <div id="mySidebar" class="sidebar">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()">&times;</a>
+                <a href="/Search">Search</a>
+                <a href="/Profile">Profile</a>
+                <!-- <a href="/Settings">Settings</a> -->
+            </div>
+            
             <div class="container">
                 <div class="profile">
                     <h2>Profile</h2>
@@ -23,6 +31,8 @@
                     <button id = "updateButton">Update</button>
                 </div>    
             </div>
+        
+        
             <script src="Profile.js"></script>
         </main>
         <footer>

@@ -50,6 +50,7 @@
     app.get('/Profile', async function (req, res) {
       res.sendFile(path.join(__dirname, 'FrontEnd','Profile', 'Profile.html'));
     });
+    
 // API SETUP
 
   // returns products for item page

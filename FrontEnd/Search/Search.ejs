@@ -10,9 +10,10 @@
     <body>
         <!--HEADER-->
             <header>
-                <h1 style="font-size: 56px; font-family: sans-serif;">Local Market Radar</h1>
+                <button onclick="window.location.href = '/MainPage';" class="homeButton">Home</button>
+                <h1 >Local Market Radar</h1>
                     
-                    <button class = "settingsButton"onclick="openSettings()">&#9776;</button>
+                <button class = "settingsButton"onclick="openSettings()">&#9776;</button>
                 <hr>
             </header>
         <!--MAIN-->
@@ -20,54 +21,49 @@
 
                 <div id="mySidebar" class="sidebar">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()">&times;</a>
+                    <a href="/Search">Search</a>
                     <a href="/Profile">Profile</a>
-                    
-                </div>
-                  
-
-                <div id= "main">
-                    
-                    <div class = "searchbar">  
-                        <input type="text" id="search" placeholder="Search for items..">
-
-                        <div class = "searchButton">
-                            <p id="searchText">Search</button>
-                        </div>
-                    </div>
-
-                    <div class = "searchSettings">
-                        <ul>
-                            <!--<li><button id="filterButton">Filter</button></li>-->
-                        </ul>
-                    </div>
-                    
-                    <div id = "MainItemContainer">
-                        <% items.forEach(function(item){ %> 
-                            <div class = "itemcontainer">
-                                <div class="itemcard">
-                                    <img src= <%= item.image %> alt="image">
-                                    <h5 class="name"> <%= item.name %> </h5>
-                                    <p class="price">Price: <%= item.price %>    |     Stock: <%= item.stock %>  </p>
-                                    <p class="description">Description: <%= item.description %> </p>
-                                </div>
-                            </div>
-                        <% }); %>
-                    </div>
                 </div>
                 
+                <div class = "searchbar">  
+                    <input type="text" id="search" placeholder="Search for items..">
+
+                    <div class = "searchButton">
+                        <p id="searchText">Search</button>
+                    </div>
+                </div>
+
+                <div class = "searchSettings">
+                    <ul>
+                        <!--<li><button id="filterButton">Filter</button></li>-->
+                    </ul>
+                </div>
+                
+                <div id = "MainItemContainer">
+                    <% items.forEach(function(item){ %> 
+                        <div class = "itemcontainer">
+                            <div class="itemcard">
+                                <img src= <%= item.image %> alt="image">
+                                <h5 class="name"> <%= item.name %> </h5>
+                                <p class="price">Price: <%= item.price %>    |     Stock: <%= item.stock %>  </p>
+                                <p class="description">Description: <%= item.description %> </p>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            
+            
 
                 <!--SEARCH SCRIPT -->
                 <script src="Search.js"></script>
 
             </main>
         <!--FOOTER-->
-            <footer id = "footer">
-                <template id = "footerTemplate">
-                    <div class = "footer">
-                        <hr>
-                        <p class="footer">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas temporibus quibusdam doloremque velit magnam autem modi ipsam nam maiores? Odio consectetur doloribus tenetur iste fugiat explicabo sequi amet distinctio! </p>
-                    </div>
-                </template>
+            <footer>
+                <div class="footer">
+                    <hr>
+                    <p>Created by: Applewood-Softworks</p>
+                </div>
             </footer>
 
     </body>
