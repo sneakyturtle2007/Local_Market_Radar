@@ -9,7 +9,7 @@
     });
     con.connect(function(err) {
             if (err) throw err;
-            console.log("Connected!");    
+            console.log("Database Connected!");    
     });
 
 
@@ -88,4 +88,4 @@
 
 
 // EXPORTS
-    module.exports = {getProducts, addProduct, deleteProduct, createAccount, getAccount};
+    module.exports = {getProducts, addProduct, deleteProduct, createAccount, deleteAccount, getAccount};
