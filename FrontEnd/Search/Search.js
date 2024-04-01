@@ -1,3 +1,7 @@
+const settingsButton = document.querySelector(".settingsButton");
+var Cookies = document.cookie;
+
+
 function displayItems(items){
     var main = document.getElementById("MainItemContainer");
     main.innerHTML = "";
@@ -32,8 +36,8 @@ function displayItems(items){
         itemContainer.appendChild(itemCard);
         main.appendChild(itemContainer);
     });
-    
 }
+
 document.addEventListener("keypress", async function(event) {
     if (event.keyCode == 13) {
         const search = document.getElementById("search").value;
@@ -41,26 +45,31 @@ document.addEventListener("keypress", async function(event) {
         displayItems(items);
     }
   });
-const searchButton = document.querySelector(".searchButton");
-searchButton.addEventListener("click", async function(){
+
+async function search(){
     const search = document.getElementById("search").value;
     const items = await fetch("/api/items?search=" + search).then(res => res.json()).catch(err => console.log(err) );
     displayItems(items);
-});
-const settingsButton = document.querySelector(".settingsButton");
-settingsButton.addEventListener("click", async function(){
-    
-});
-
-
-
+}
 
 function openSettings() {
     document.getElementById("mySidebar").style.width = "250px";
 }
-  
+
+function logout(){
+    document.cookie = "loggedin=false; expires=" + 0 + "; path=/";
+}
 
 function closeSettings() {
     document.getElementById("mySidebar").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
 }
+
+window.onload = function(){
+    
+    if(document.cookie.includes("loggedin=true") != true){
+        document.getElementById("logout_or_back_button").textContent = "Sign Up";
+    }else{
+        document.getElementById("logout_or_back_button").textContent = "Logout";
+    }
+};

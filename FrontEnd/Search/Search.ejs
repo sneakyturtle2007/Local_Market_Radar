@@ -23,14 +23,14 @@
                     <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()">&times;</a>
                     <a href="/Search">Search</a>
                     <a href="/Profile">Profile</a>
-                    <a href="/" >Logout</a>
+                    <a href="/" id = "logout_or_back_button" onclick="logout()">Logout</a>
                 </div>
                 
                 <div class = "searchbar">  
                     <input type="text" id="search" placeholder="Search for items..">
 
-                    <div class = "searchButton">
-                        <p id="searchText">Search</button>
+                    <div class = "searchButton" onclick="search()">
+                        <p>Search</p>
                     </div>
                 </div>
 
