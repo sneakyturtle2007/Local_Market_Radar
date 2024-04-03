@@ -68,8 +68,8 @@ function closeSettings() {
 window.onload = function(){
     
     if(document.cookie.includes("loggedin=true") != true){
-        document.getElementById("logout_or_back_button").textContent = "Sign Up";
+        document.getElementById("logout_or_back_button").textContent = "Log in";
     }else{
-        document.getElementById("logout_or_back_button").textContent = "Logout";
+        document.getElementById("logout_or_back_button").textContent = "Log out";
     }
 };
