@@ -15,9 +15,9 @@ async function checkLogin(){
         if(remember){
             let date = new Date();
             date.setTime(date.getTime() + (4*7*24*60*60*1000));
-            document.cookie = "loggedin=true; expires=" + date.toUTCString() + "; path=/";
+            document.cookie = "loggedin=true; username=" + username +"; expires=" + date.toUTCString() + "; path=/";
         }else{
-            document.cookie = "loggedin=true; expires=" + 0 + "; path=/";
+            document.cookie = "loggedin=true; username=" + username +"; expires=" + 0 + "; path=/";
         }
     
         window.location.href = "/Search";

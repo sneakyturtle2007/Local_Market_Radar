@@ -9,7 +9,7 @@ async function SignUp(){
     }
     var login = await fetch("/api/signup?username=" + username + "&password=" + password).then(res => res.json()).catch(err => console.log(err) );
     if(login){
-        window.location.href = "/Search";
+        window.location.href = "/Login";
     }
     else{
         alert("Username Taken");

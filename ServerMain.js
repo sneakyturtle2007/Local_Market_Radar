@@ -7,14 +7,15 @@
   var Search = require('./Backend_NodeJS_Files/Search.js');
   var Login = require('./Backend_NodeJS_Files/Login.js');
   var SignUp = require('./Backend_NodeJS_Files/SignUp.js');
+  var Profile = require('./Backend_NodeJS_Files/Profile.js');
 // SERVER SETUP
   var app = express();
 
   app.set('view engine', 'ejs');
 
-  app.set('views', path.join(__dirname, 'FrontEnd', 'Search'));
+  app.set('views', path.join(__dirname,'Search'));
 
-  app.use(express.static(path.join(__dirname, 'FrontEnd')));
+  app.use(express.static(path.join(__dirname)));
   
 // DYNAMIC PAGES SETUP
 
@@ -27,28 +28,29 @@
       renderPage();
       
     });
-
+    
+  
 // STATIC PAGES SETUP
   
   // main page
     app.get('/', async function (req, res) {
-      res.sendFile(path.join(__dirname, 'FrontEnd', 'MainPage.html'));
+      res.sendFile(path.join(__dirname, 'MainPage.html'));
     });
   // login page
     app.get('/Login', async function (req, res) {
-      res.sendFile(path.join(__dirname, 'FrontEnd', 'Login', 'Login.html'));
+      res.sendFile(path.join(__dirname, 'Login', 'Login.html'));
     });
   // account page
     app.get('/Account', async function (req, res) {
-      res.sendFile(path.join(__dirname, 'FrontEnd', 'Account.html'));
+      res.sendFile(path.join(__dirname, 'Account.html'));
     });
   // signup page
     app.get('/Signup', async function (req, res) {
-      res.sendFile(path.join(__dirname, 'FrontEnd','SignUp', 'Signup.html'));
+      res.sendFile(path.join(__dirname,'SignUp', 'Signup.html'));
     });
   // profile page
     app.get('/Profile', async function (req, res) {
-      res.sendFile(path.join(__dirname, 'FrontEnd','Profile', 'Profile.html'));
+      res.sendFile(path.join(__dirname,'Profile', 'Profile.html'));
     });
     
 // API SETUP
@@ -56,13 +58,9 @@
   // returns products for item page
     app.get('/api/items', async function (req, res) {
       var search = req.query.search;
-      try{
+      
         var items = await Search.getItems(0, search);
         res.json(items);
-      }catch(err){
-        console.log(err);
-      }
-      
     });
 
   // logging in
@@ -84,6 +82,12 @@
       res.json(result);
     });
     
+  // profile page
+    app.get('/api/profile', async function (req, res) {
+      var username = req.query.username;
+      var result = await Profile.getProfile(username);
+      res.json(result);
+    });
 
 // SERVER STARTUP
 

@@ -64,12 +64,10 @@ function closeSettings() {
     document.getElementById("mySidebar").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
 }
-
-window.onload = function(){
-    
-    if(document.cookie.includes("loggedin=true") != true){
-        document.getElementById("logout_or_back_button").textContent = "Log in";
-    }else{
-        document.getElementById("logout_or_back_button").textContent = "Log out";
-    }
-};
+if(document.cookie.includes("loggedin=true") == true){
+    document.getElementById("logout_or_back_button").textContent = "Log out";
+}else{
+    document.getElementById("logout_or_back_button").textContent = "Log in";
+    document.getElementById("logout_or_back_button").href = "/Login";
+    document.getElementById("Profile_button").style.display = "none";
+}
