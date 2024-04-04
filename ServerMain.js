@@ -92,8 +92,8 @@
 // SERVER STARTUP
 
   const httpsOptions = {
-    key: fs.readFileSync('server.key'),
-    cert: fs.readFileSync('server.cert')
+    key: fs.readFileSync('Certificates/server.key'),
+    cert: fs.readFileSync('Certificates/server.cert')
   }
   const server = https.createServer(httpsOptions, app);
 
