@@ -84,8 +84,11 @@
     
   // profile page
     app.get('/api/profile', async function (req, res) {
+      console.log(req.query.username)
+      console.log("debug");
       var username = req.query.username;
       var result = await Profile.getProfile(username);
+      console.log(result);
       res.json(result);
     });
 

@@ -1,14 +1,14 @@
 async function getProfile(){
     var username;
-    for(var i =  document.cookie.indexOf("username=") + 9; i < document.cookie.length; i++){
-        if(document.cookie[i] != ";"){
-            username += document.cookie[i];
-        }else{
-            break;
-        }
-    }
-    var profile = await fetch("/api/profile?" + username).then(res => res.json()).catch(err => console.log(err) );
-    //document.getElementsByClassName("profilePicture").src = profile.AccountProfilePicture;
+    var cookies = document.cookie.split(";");
+    var username = cookies[1].split("=")[1];
+    
+
+    
+    var profile = await fetch("/api/profile?username=" + username).then(res => res.json()).catch(err => console.log(err) );
+    document.getElementsByClassName("profilePicture").src = profile.AccountProfilePicture;
+    document.getElementById("Username").textContent = username;
+    document.getElementById("Email").textContent = profile.AccountEmail;
 }
 
 function openSettings() {
@@ -20,5 +20,5 @@ function closeSettings() {
 }
 
 window.onload = function(){
-   // getProfilePicture();
+   getProfile();
 }

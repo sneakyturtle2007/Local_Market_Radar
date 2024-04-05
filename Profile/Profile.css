@@ -55,21 +55,27 @@ p {
     justify-content: center;
     align-items: center;
     margin-top: 40px;
-    margin-bottom: 20px;
-
+    
+}
+#Username_and_Email {
+    display:block;
+    margin-left: 20px;
 }
 .profilePicture {
     width: 150px;
     height: 150px;
     border-radius: 50%;
 }
-
-.Username {
+#Username {
     font-size: 30px;
     color: white;
     font-family: sans-serif;
-    margin-left: 20px;
-
+}
+#Email{
+    color: white;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    font-family: sans-serif;
 }
 @media screen and (max-height: 450px) {
     .sidebar {padding-top: 15px;}

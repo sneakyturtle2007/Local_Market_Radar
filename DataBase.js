@@ -29,10 +29,14 @@
         async function getAccount(name){
             let sql = "SELECT * FROM accounts WHERE AccountName = '" + name + "'" ;
             let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+            
             if(await results.length > 0){
+                console.log(await results);
                 return await results;
+            }else{
+                return false;
             }
-            return false;
+            
         }
     // FUNCTION: deleteAccount
         async function deleteAccount(name){
@@ -40,8 +44,10 @@
             let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
             if(await results.affectedRows > 0){
                 return true;
+            }else{
+                return false;
             }
-            return false;
+           
         }
     
 // TABLE - products
