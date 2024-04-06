@@ -19,38 +19,37 @@
   
 // DYNAMIC PAGES SETUP
 
-  // itempage 
+  // search page
     app.get('/Search', async function (req, res) {
-
-      var items = await Search.getItems(0, '');
-      console.log(items);
-      var renderPage = function(){ res.render('Search',{items : items}); }
-      renderPage();
       
+      //var items = await Search.getItems(0, '');
+      //console.log(items);
+      //var renderPage = function(){ res.render('Search',{items : items}); }
+      //renderPage();
+      res.sendFile(path.join(__dirname, 'Search', 'Search.html'));
     });
-    
-  
+  // profile page
+    app.get('/Profile', function (req, res) {
+      res.sendFile(path.join(__dirname,'Profile', 'Profile.html'));
+    });
+  // item page
+    app.get('/ItemPage', async function(red, res){
+      res.sendFile(path.join(__dirname,'ItemPage', 'ItemPage.html'));
+    });
+
 // STATIC PAGES SETUP
   
   // main page
-    app.get('/', async function (req, res) {
+    app.get('/', function (req, res) {
       res.sendFile(path.join(__dirname, 'MainPage.html'));
     });
   // login page
-    app.get('/Login', async function (req, res) {
+    app.get('/Login', function (req, res) {
       res.sendFile(path.join(__dirname, 'Login', 'Login.html'));
     });
-  // account page
-    app.get('/Account', async function (req, res) {
-      res.sendFile(path.join(__dirname, 'Account.html'));
-    });
   // signup page
-    app.get('/Signup', async function (req, res) {
+    app.get('/Signup', function (req, res) {
       res.sendFile(path.join(__dirname,'SignUp', 'Signup.html'));
-    });
-  // profile page
-    app.get('/Profile', async function (req, res) {
-      res.sendFile(path.join(__dirname,'Profile', 'Profile.html'));
     });
     
 // API SETUP
@@ -62,7 +61,7 @@
         var items = await Search.getItems(0, search);
         res.json(items);
     });
-
+  
   // logging in
     app.get('/api/login', async function (req, res) {
       var username = req.query.username;

@@ -8,15 +8,17 @@ All tables in database-
 +----------------+
 
 Accounts table - 
-+-----------------+--------------+------+-----+---------+-------+
-| Field           | Type         | Null | Key | Default | Extra |
-+-----------------+--------------+------+-----+---------+-------+
-| AccountName     | varchar(255) | NO   | PRI | NULL    |       |
-| AccountPasscode | varchar(255) | YES  |     | NULL    |       |
-| BusinessName    | varchar(255) | YES  |     | NULL    |       |
-| AccountEmail    | varchar(255) | YES  |     | NULL    |       |
-| AccountAddress  | varchar(255) | YES  |     | NULL    |       |
-+-----------------+--------------+------+-----+---------+-------+
++-----------------------+--------------+------+-----+--------------------------------------------+-------+
+| Field                 | Type         | Null | Key | Default                                    | Extra |
++-----------------------+--------------+------+-----+--------------------------------------------+-------+
+| AccountName           | varchar(255) | NO   | PRI | NULL                                       |       |
+| AccountPasscode       | varchar(255) | NO   |     | NULL                                       |       |
+| BusinessName          | varchar(255) | NO   |     | NONE                                       |       |
+| AccountEmail          | varchar(255) | NO   |     | NONE                                       |       |
+| AccountAddress        | varchar(255) | NO   |     | NONE                                       |       |
+| AccountProfilePicture | varchar(255) | NO   |     | /ProfilePictures/DefaultProfilePicture.jpg |       |
+| FavoriteBusinesses    | varchar(255) | NO   |     | NONE                                       |       |
++-----------------------+--------------+------+-----+--------------------------------------------+-------+
 Businesses table - 
 +--------------+--------------+------+-----+---------+----------------+
 | Field        | Type         | Null | Key | Default | Extra          |
