@@ -35,6 +35,13 @@ p {
     color: white;
     font-family: sans-serif;
 }
+img{
+    margin-left: 50px;
+    margin-right: 100px;
+    margin-top: 25px;
+    height: auto;
+    width: 30%;
+}
 .footer{
     
     background-color: rgb(33, 33, 33);
@@ -44,7 +51,7 @@ p {
     margin-top: 20px; 
     clear: both
 }
-.container{
+#container{
     display: flex;
     flex-direction: row;
     height: auto;  

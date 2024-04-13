@@ -49,6 +49,13 @@ p {
     
     width: 100px;
 }
+#EditProfile {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
 #profilePicture_and_username {
     display: flex;
     flex-direction: space-around;

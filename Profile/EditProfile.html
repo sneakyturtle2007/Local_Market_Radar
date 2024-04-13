@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html>
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="Profile.css">
@@ -7,11 +7,11 @@
     </head>
     <body>
         <header>
-
             <h1>Local Market Radar</h1>
             <button class = "settingsButton"onclick="openSettings()">&#9776;</button>
             <hr>
         </header>
+        
         <main>
             <div id="mySidebar" class="sidebar">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()">&times;</a>
@@ -20,22 +20,11 @@
                 <a href="/" >Logout</a>
                 <!-- <a href="/Settings">Settings</a> -->
             </div>
-            <div id="profilePicture_and_username">
+            <div id="EditProfile">
                 <img src = "/ProfilePictures/DefaultProfilePicture.png"  class = "profilePicture">
-                <div id="Username_and_Email">
-                    <h3 id="Username">Username</h3>
-                    <p id="Email">Email</p>
-                    <a href="/EditProfile" id="EditProfile">Edit Profile</a>
-                </div>
+                
             </div>
             
-
-            <script src="Profile.js"></script>
         </main>
-        <footer>
-            <hr>
-            <p>Created by: Applewood-Softworks</p>
-        </footer>
     </body>
-    
 </html>

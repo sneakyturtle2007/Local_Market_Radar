@@ -8,7 +8,10 @@ function displayItems(items){
     
     items.forEach(function(item){
         var hyperlinkContainer = document.createElement("a");
-        hyperlinkContainer.href = "/ItemPage"
+        hyperlinkContainer.onclick = function(){
+            document.cookie = "item=" + encodeURIComponent(JSON.stringify(item)) + "; expires=" + 0 + "; path=/";
+            window.location.href = "/ItemPage";
+        };
 
         var itemContainer = document.createElement("div");
         itemContainer.className = "itemcontainer";

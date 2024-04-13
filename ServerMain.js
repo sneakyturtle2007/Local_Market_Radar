@@ -21,11 +21,6 @@
 
   // search page
     app.get('/Search', async function (req, res) {
-      
-      //var items = await Search.getItems(0, '');
-      //console.log(items);
-      //var renderPage = function(){ res.render('Search',{items : items}); }
-      //renderPage();
       res.sendFile(path.join(__dirname, 'Search', 'Search.html'));
     });
   // profile page
@@ -57,9 +52,10 @@
   // returns products for item page
     app.get('/api/items', async function (req, res) {
       var search = req.query.search;
+
       
-        var items = await Search.getItems(0, search);
-        res.json(items);
+      var items = await Search.getItems(0, search);
+      res.json(items);
     });
   
   // logging in
