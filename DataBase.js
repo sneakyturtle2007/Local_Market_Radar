@@ -49,7 +49,38 @@
             }
            
         }
-    
+
+// TABLE - businesses
+
+    // FUNCTION: createBusiness
+        async function createBusiness(name, Address, City, State, Country){
+            let sql = "INSERT INTO businesses (BusinessName, Address, City, State, Country) VALUES ('" + name + "', '"+ Address + "', '" + City + "', '" + State + "', '" + Country + "')";
+            let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+            if(await results.affectedRows > 0){
+                return true;
+            }
+            return false;
+        }
+    // FUNCTION: getBusiness
+        async function getBusiness(BusinessID){
+            let sql = "SELECT * FROM businesses WHERE BusinessID = " + BusinessID ;
+            let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+            if(await results.length > 0){
+                return await results[0];
+            }else{
+                return false;
+            }
+        }
+    // FUNCTION: deleteBusiness
+        async function deleteBusiness(BusinessID){
+            let sql = "DELETE FROM businesses WHERE BusinessID = " + "'" + BusinessID + "'";
+            let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+            if(await results.affectedRows > 0){
+                return true;
+            }
+            return false;
+        }
+
 // TABLE - products
 
     // FUNCTION: getProducts
@@ -94,4 +125,4 @@
 
 
 // EXPORTS
-    module.exports = {getProducts, addProduct, deleteProduct, createAccount, deleteAccount, getAccount};
+    module.exports = {getProducts, addProduct, deleteProduct, createAccount, deleteAccount, getAccount, createBusiness, getBusiness, deleteBusiness};

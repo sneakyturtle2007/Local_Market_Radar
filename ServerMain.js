@@ -27,10 +27,6 @@
     app.get('/Profile', function (req, res) {
       res.sendFile(path.join(__dirname,'Profile', 'Profile.html'));
     });
-  // item page
-    app.get('/ItemPage', async function(red, res){
-      res.sendFile(path.join(__dirname,'ItemPage', 'ItemPage.html'));
-    });
 
 // STATIC PAGES SETUP
   
@@ -52,8 +48,6 @@
   // returns products for item page
     app.get('/api/items', async function (req, res) {
       var search = req.query.search;
-
-      
       var items = await Search.getItems(0, search);
       res.json(items);
     });
@@ -98,7 +92,6 @@
   const port = 443; 
 
   server.listen(port, () => {
-    
     console.log('Server is running on port: ' + port);
   }).on('error', function(err) {
     console.log(err);

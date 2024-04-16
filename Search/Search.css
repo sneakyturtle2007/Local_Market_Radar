@@ -21,6 +21,12 @@ h3{
     text-align: left;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+h4{
+    color: white;
+    margin-left: 10px;
+    text-align: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', calibri, 'Trebuchet MS', sans-serif;
+}
 p{
     color: white;
     text-align: center;
@@ -29,6 +35,7 @@ p{
 a{
     color: white;
     text-decoration: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .settingsButton{
@@ -95,8 +102,6 @@ a{
     margin: 7px 16px;
     justify-content: space-between;
     float: left;
-    
-     
 }
 .itemcard{
     
@@ -145,28 +150,72 @@ a{
 input:focus {
     background-color: #cecece; 
 }
+#backButtonDiv {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    height: auto;
 
+}
+#backButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(33, 33, 33);
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 50px;
+    border-radius: 2px;
+    width: 80px;
+    height: 42px;
+}
+#backButton:hover{
+    background-color: rgb(66,66,66);
+}
+#container{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    
+    height: auto;  
+}
+.ItemInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
 
+}
+#itemImage{
+    margin-left: 50px;
+    margin-right: 100px;
+    margin-top: 25px;
+    max-height: 500px;
+    max-width: 50%;
+}
 
 @media screen and (max-height: 450px) {
     .sidebar {padding-top: 15px;}
     .sidebar a {font-size: 18px;}
 }
-/* The sidebar menu */
+
 .sidebar {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    height: 100%; 
+    width: 0; 
+    position: fixed; 
+    z-index: 1; 
     top: 0;
     right: 0;
-    background-color: #111; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+    background-color: #111; 
+    overflow-x: hidden;
+    padding-top: 60px; 
+    transition: 0.5s; 
 }
 
-/* The sidebar links */
+
 .sidebar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -176,12 +225,11 @@ input:focus {
     transition: 0.3s;
 }
 
-/* When you mouse over the navigation links, change their color */
+
 .sidebar a:hover {
     color: #f1f1f1;
 }
 
-/* Position and style the close button (top right corner) */
 .sidebar .closebtn {
     position: absolute;
     top: 0;
@@ -190,7 +238,6 @@ input:focus {
     margin-left: 50px;
 }
 
-/* The button used to open the sidebar */
 .openbtn {
     font-size: 20px;
     cursor: pointer;
