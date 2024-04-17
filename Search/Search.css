@@ -27,6 +27,7 @@ h4{
     text-align: left;
     font-family: 'Gill Sans', 'Gill Sans MT', calibri, 'Trebuchet MS', sans-serif;
 }
+
 p{
     color: white;
     text-align: center;
@@ -196,7 +197,12 @@ input:focus {
     max-height: 500px;
     max-width: 50%;
 }
-
+#address{
+    color: white;
+    margin-left: 10px;
+    text-align: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', calibri, 'Trebuchet MS', sans-serif;
+}
 @media screen and (max-height: 450px) {
     .sidebar {padding-top: 15px;}
     .sidebar a {font-size: 18px;}

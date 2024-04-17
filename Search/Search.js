@@ -1,5 +1,5 @@
 const settingsButton = document.querySelector(".settingsButton");
-var Cookies = document.cookie;
+
 
 
 // SEARCHBAR functionality and DISPLAYITEMS function
@@ -52,7 +52,6 @@ var Cookies = document.cookie;
     });
 
     async function search(){
-        
         const search = document.getElementById("search").value;
         const items = await fetch("/api/items?search=" + search).then(res => res.json()).catch(err => console.log(err) );
         displayItems(items);
@@ -86,10 +85,11 @@ var Cookies = document.cookie;
             itemInfo.className = "ItemInfo";
 
             var name = document.createElement("h2");
-            name.textContent = item.name;
+            name.innerHTML = item.name;
             
-            var address = document.createElement("h4");
+            var address = document.createElement("h5");
             address.textContent = item.Address;
+            address.id = "address";
 
             var priceAndStock = document.createElement("h4");
             priceAndStock.textContent = "Price: " + item.price + " | Stock: " + item.stock;
@@ -112,9 +112,58 @@ var Cookies = document.cookie;
     }
 
 // SIDEBAR
+    function loadSidebar(loggedin){
+
+        var sideBarContainer = document.getElementById("mySidebar");
+        sideBarContainer.innerHTML = "";
+
+        var closeButton = document.createElement("a");
+        closeButton.href = "javascript:void(0)";
+        closeButton.className = "closebtn";
+        closeButton.onclick = function(){closeSettings();}
+        closeButton.innerHTML = '&times;';
+
+        var searchButton = document.createElement("a");
+        searchButton.href = "/Search";
+        searchButton.innerHTML = "Search";
+        
+        sideBarContainer.appendChild(closeButton);
+        sideBarContainer.appendChild(searchButton);
+
+        if(loggedin){
+        
+            var profileButton = document.createElement("a");
+            profileButton.href = "/Profile";
+            profileButton.textContent = "Profile";
+            
+            var logoutButton = document.createElement("a");
+            logoutButton.href = "/";
+            logoutButton.onclick = function(){logout()};
+            logoutButton.textContent = "Logout";
+ 
+            sideBarContainer.appendChild(profileButton);
+            sideBarContainer.appendChild(logoutButton);
+        
+        }else{
+        
+            var loginButton = document.createElement("a");
+            loginButton.href = "/Login";
+            loginButton.textContent = "Login";
+
+            var signupButton = document.createElement("a");
+            signupButton.href = "/Signup";
+            signupButton.textContent = "Signup";
+
+            sideBarContainer.appendChild(loginButton);
+            sideBarContainer.appendChild(signupButton);
+
+        }
+    }
+
     function openItem(){
         window.href = '/ItemPage';
     }
+
     function openSettings() {
         document.getElementById("mySidebar").style.width = "250px";
     }
@@ -126,15 +175,17 @@ var Cookies = document.cookie;
     function logout(){
         document.cookie = "loggedin=false; expires=" + 0 + "; path=/";
     }
-// CHECK IF LOGGED IN
-    if(document.cookie.includes("loggedin=true") == true){
-        document.getElementById("logout_or_back_button").textContent = "Log out";
-    }else{
-        document.getElementById("logout_or_back_button").textContent = "Log in";
-        document.getElementById("logout_or_back_button").href = "/Login";
-        document.getElementById("Profile_button").style.display = "none";
-    }
+
+// ONLOAD FUNCTION
 
 window.onload = async function(){
+    
     search();
+    // sidebar setup
+    if(document.cookie.includes("loggedin=true")){
+        loadSidebar(true);
+    }else{
+        loadSidebar(false);
+    }
+
 }
