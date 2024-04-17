@@ -87,7 +87,7 @@ const settingsButton = document.querySelector(".settingsButton");
             itemInfo.className = "ItemInfo";
 
             var name = document.createElement("h2");
-            name.innerHTML = item.name +"<br>" + "<a href='/Business'> <h5 id='businessLink'>PlaceHolder</h5> </a>"+ "<hr>";
+            name.innerHTML = item.name +"<br>" + "<a href='/Business'> <h5 id='businessLink'>Store: placeholder</h5> </a>"+ "<hr>";
             /*
             var address = document.createElement("h5");
             address.textContent = item.Address;

@@ -1,10 +1,8 @@
+
 async function getProfile(){
     var username;
     var cookies = document.cookie.split(";");
     var username = cookies[1].split("=")[1];
-    
-
-    
     var profile = await fetch("/api/profile?username=" + username).then(res => res.json()).catch(err => console.log(err) );
     document.getElementsByClassName("profilePicture").src = profile.AccountProfilePicture;
     document.getElementById("Username").textContent = username;
