@@ -77,28 +77,30 @@ const settingsButton = document.querySelector(".settingsButton");
 
             var itemContainer = document.createElement("div");
             itemContainer.id = "container";
+
             var img = document.createElement("img");
             img.id = "itemImage";
             img.src = item.image;
             img.alt = "image";
+
             var itemInfo = document.createElement("div");
             itemInfo.className = "ItemInfo";
 
             var name = document.createElement("h2");
-            name.innerHTML = item.name;
-            
+            name.innerHTML = item.name +"<br>" + "<a href='/Business'> <h5 id='businessLink'>PlaceHolder</h5> </a>"+ "<hr>";
+            /*
             var address = document.createElement("h5");
             address.textContent = item.Address;
             address.id = "address";
-
+            */
             var priceAndStock = document.createElement("h4");
-            priceAndStock.textContent = "Price: " + item.price + " | Stock: " + item.stock;
+            priceAndStock.innerHTML = "Price: " + item.price + "<br>" + "<h5 id='itemStock'>Stock: " + item.stock + "<br>" + "</h5>" + "<h5 id='address'>"+"Address: " + item.Address + "</h5>";
 
             var description = document.createElement("p");
-            description.textContent = item.description;
+            description.innerHTML = "<p style='text-align: left;'>Description:</p>" + item.description;
 
             itemInfo.appendChild(name);
-            itemInfo.appendChild(address);
+            //itemInfo.appendChild(address);
             itemInfo.appendChild(priceAndStock);
             itemInfo.appendChild(description);
             itemContainer.appendChild(img);

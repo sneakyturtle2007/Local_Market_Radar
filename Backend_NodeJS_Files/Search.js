@@ -18,7 +18,7 @@ async function getItems(BusinessID, ProductName){
   for(var i = 0; i < Products.length; i++){
     var Address = await getBusinessAddress(Products[i].BusinessID);
     console.log(Address);
-    items.push(await new item(Products[i].ProductName, Products[i].ProductPrice, Products[i].ProductStock ,  Products[i].ProductDescription, 'https://i.ytimg.com/vi/_3OUQTruQRE/maxresdefault.jpg', Address ));
+    items.push(await new item(Products[i].ProductName, Products[i].ProductPrice, Products[i].ProductStock ,  Products[i].ProductDescription, Products[i].ProductImage, Address ));
   }
 
   return items;

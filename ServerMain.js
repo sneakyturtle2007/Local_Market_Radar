@@ -42,6 +42,10 @@
     app.get('/Signup', function (req, res) {
       res.sendFile(path.join(__dirname,'SignUp', 'Signup.html'));
     });
+  // Business Page
+    app.get('/Business', function (req, res) {
+      res.sendFile(path.join(__dirname,'Business', 'Business.html'));
+    });
     
 // API SETUP
 
