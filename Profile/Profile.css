@@ -49,6 +49,36 @@ p {
     
     width: 100px;
 }
+#backButtonDiv {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    height: auto;
+
+}
+#backButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(33, 33, 33);
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 50px;
+    border-radius: 2px;
+    width: 80px;
+    height: 42px;
+}
+#backButton:hover{
+    background-color: rgb(66,66,66);
+}
+#profile{
+    display:flex;
+    flex-direction: column;
+    align-items: center
+}
 #EditProfile {
     display: flex;
     flex-direction: column;
@@ -83,6 +113,17 @@ p {
     color: rgba(255, 255, 255, 0.5);
     font-size: 14px;
     font-family: sans-serif;
+}
+#profileOptions{
+    display: flex;
+    margin-top: 25px;
+    justify-content: center;
+    align-items: center;
+}
+#profileInfoButton{
+    height: 50px;
+    width: 400px;
+
 }
 @media screen and (max-height: 450px) {
     .sidebar {padding-top: 15px;}

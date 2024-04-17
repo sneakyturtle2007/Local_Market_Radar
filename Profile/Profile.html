@@ -20,17 +20,20 @@
                 <a href="/" >Logout</a>
                 <!-- <a href="/Settings">Settings</a> -->
             </div>
-            <div id="profilePicture_and_username">
-                <img src = "/ProfilePictures/DefaultProfilePicture.png"  class = "profilePicture">
-                <div id="Username_and_Email">
-                    <h3 id="Username">Username</h3>
-                    <p id="Email">Email</p>
-                    <a href="/EditProfile" id="EditProfile">Edit Profile</a>
+            <div id="profile">
+                <div id="profilePicture_and_username">
+                    <img src = "/ProfilePictures/DefaultProfilePicture.png"  class = "profilePicture">
+                    <div id="Username_and_Email">
+                        <h3 id="Username">Username</h3>
+                        <p id="Email">Email</p>
+                        <a href="/EditProfile" id="EditProfile">Edit Profile</a>
+                    </div>
+                </div>
+                <div id="profileOptions">
+                    <button id="profileInfoButton" onclick="openProfileInfo()">Profile Info</button>
                 </div>
             </div>
-            <div id="profileOptions">
-                <button id="ProfileInfo" onclick="openProfileInfo()">Profile Info</button>
-            </div>
+            
 
             <script src="Profile.js"></script>
         </main>
