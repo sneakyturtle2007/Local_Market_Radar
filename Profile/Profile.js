@@ -36,12 +36,24 @@ async function getProfile(){
     editProfileLink.id = "EditProfile";
     editProfileLink.href = "/EditProfile";
 
+    var profileOptions = document.createElement("div");
+    profileOptions.id = "profileOptions";
+
+    var profileInfoButton = document.createElement("button");
+    profileInfoButton.id = "profileInfoButton";
+    profileInfoButton.onclick = function(){
+        openProfileInfo();
+    }
+    profileInfoButton.textContent = "Profile Info";
+
     username_and_Email.appendChild(Username);
     username_and_Email.appendChild(Email);
     username_and_Email.appendChild(editProfileLink);
     profilePicture_and_username.appendChild(profilePicture);
     profilePicture_and_username.appendChild(username_and_Email);
     profileContainer.appendChild(profilePicture_and_username);
+    profileOptions.appendChild(profileInfoButton);
+    profileContainer.appendChild(profileOptions);
 } 
 async function openProfileInfo(){
     var cookies = document.cookie.split(";");
