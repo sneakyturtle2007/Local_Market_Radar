@@ -85,7 +85,7 @@ p {
     align-content: center;
     justify-content: center;
 }
-
+/* main profile */
 #profilePicture_and_username {
     display: flex;
     flex-direction: space-around;
@@ -98,7 +98,7 @@ p {
     display:block;
     margin-left: 20px;
 }
-.profilePicture {
+#profilePicture {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -124,6 +124,31 @@ p {
     height: 50px;
     width: 400px;
 
+}
+/* profile info */
+#profileInfo{
+    display: block;
+    align-items: left;
+    justify-content:left;
+
+    margin-top: 50px;
+}
+#profileInfo h3{
+    color: white;
+    font-family: sans-serif;
+    text-align: left;
+}
+#profileInfo p{
+    color: white;
+    font-family: sans-serif;
+    text-align: left;
+}
+#profileInfo img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    align-self: left;
+    justify-self:left;
 }
 @media screen and (max-height: 450px) {
     .sidebar {padding-top: 15px;}

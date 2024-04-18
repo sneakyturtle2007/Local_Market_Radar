@@ -8,17 +8,17 @@ All tables in database-
 +----------------+
 
 Accounts table - 
-+-----------------------+--------------+------+-----+--------------------------------------------+-------+
-| Field                 | Type         | Null | Key | Default                                    | Extra |
-+-----------------------+--------------+------+-----+--------------------------------------------+-------+
-| AccountName           | varchar(255) | NO   | PRI | NULL                                       |       |
-| AccountPasscode       | varchar(255) | NO   |     | NULL                                       |       |
-| BusinessName          | varchar(255) | NO   |     | NONE                                       |       |
-| AccountEmail          | varchar(255) | NO   |     | NONE                                       |       |
-| AccountAddress        | varchar(255) | NO   |     | NONE                                       |       |
-| AccountProfilePicture | varchar(255) | NO   |     | /ProfilePictures/DefaultProfilePicture.jpg |       |
-| FavoriteBusinesses    | varchar(255) | NO   |     | NONE                                       |       |
-+-----------------------+--------------+------+-----+--------------------------------------------+-------+
++-----------------------+--------------+------+-----+--------------------------------------+-------+
+| Field                 | Type         | Null | Key | Default                              | Extra |
++-----------------------+--------------+------+-----+--------------------------------------+-------+
+| AccountName           | varchar(255) | NO   | PRI | NULL                                 |       |
+| AccountPasscode       | varchar(255) | NO   |     | NULL                                 |       |
+| BusinessName          | varchar(255) | NO   |     | NONE                                 |       |
+| AccountEmail          | varchar(255) | NO   |     | NONE                                 |       |
+| AccountAddress        | varchar(255) | NO   |     | NONE                                 |       |
+| AccountProfilePicture | varchar(255) | NO   |     | /ProductImages/placeholder-image.png |       |
+| FavoriteBusinesses    | varchar(255) | NO   |     | NONE                                 |       |
++-----------------------+--------------+------+-----+--------------------------------------+-------+
 Businesses table - 
 +--------------+--------------+------+-----+---------+----------------+
 | Field        | Type         | Null | Key | Default | Extra          |
@@ -29,16 +29,17 @@ Businesses table -
 | State        | varchar(255) | YES  |     | NULL    |                |
 | Country      | varchar(255) | YES  |     | NULL    |                |
 | BusinessID   | int          | NO   | PRI | NULL    | auto_increment |
+| Zipcode      | varchar(25)  | NO   |     | 00000   |                |
 +--------------+--------------+------+-----+---------+----------------+
 
 Products table - 
-+--------------------+--------------+------+-----+---------+--------------------+
-| Field              | Type         | Null | Key | Default | Extra              |
-+--------------------+--------------+------+-----+---------+--------------------+
-| BusinessID         | int          | NO   | PRI | NULL    |   auto_increment   |
-| ProductName        | varchar(255) | YES  |     | NULL    |                    |
-| ProductPrice       | double       | YES  |     | NULL    |                    |
-| ProductStock       | int          | YES  |     | NULL    |                    |
-| ProductDescription | varchar(800) | YES  |     | NULL    |                    |
-| ProductImage       | varchar(255) | YES  |     | NULL    |                    |
-+--------------------+--------------+------+-----+---------+--------------------+
++--------------------+--------------+------+-----+-----------------------------------------------------------+-------+
+| Field              | Type         | Null | Key | Default                                                   | Extra |
++--------------------+--------------+------+-----+-----------------------------------------------------------+-------+
+| ProductName        | varchar(255) | NO   | PRI | NONE                                                      |       |
+| ProductPrice       | double       | NO   |     | 0                                                         |       |
+| ProductStock       | int          | NO   |     | 0                                                         |       |
+| ProductDescription | varchar(800) | NO   |     | This is not and item and it has not been assigned an item |       |
+| ProductImage       | varchar(255) | NO   |     | /ProductImages/placeholder-image.png                      |       |
+| BusinessID         | int          | NO   |     | NULL                                                      |       |
++--------------------+--------------+------+-----+-----------------------------------------------------------+-------+

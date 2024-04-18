@@ -18,7 +18,7 @@ async function getProfile(){
     profilePicture_and_username.id = "profilePicture_and_username";
 
     var profilePicture = document.createElement("img");
-    profilePicture.className = "profilePicture";
+    profilePicture.id= "profilePicture";
     profilePicture.src = profile.AccountProfilePicture;
 
     var username_and_Email = document.createElement("div");
@@ -68,28 +68,43 @@ async function openProfileInfo(){
     var profileContainer = document.getElementById("profile");
     profileContainer.innerHTML = "";
 
+    var profileInfo = document.createElement("div");
+    profileInfo.id = "profileInfo";
+
     var image = document.createElement("img");
     image.src = profile.AccountProfilePicture;
+    
 
     var username = document.createElement("h3");
-    username.innerHTML = profile.AccountName;
+    username.innerHTML = "Username: " + profile.AccountName + "<br>";
+    
 
     var email = document.createElement("p");
-    email.innerHTML = profile.AccountEmail;
+    email.innerHTML ="Email: " +  profile.AccountEmail + "<br>";
+    
 
-    profileContainer.append(image);
-    profileContainer.append(username);
-    profileContainer.append(email);
+    var address = document.createElement("p");
+    address.innerHTML ="Address: " + profile.AccountAddress;
+    
+
+    profileInfo.appendChild(image);
+    profileInfo.appendChild(username);
+    profileInfo.appendChild(email);
+    profileInfo.appendChild(address);
+    profileContainer.appendChild(profileInfo);
 
 }
-function openSettings() {
-    document.getElementById("mySidebar").style.width = "250px";
-}
-function closeSettings() {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-}
+// SIDEBAR
 
+    function openSettings() {
+        document.getElementById("mySidebar").style.width = "250px";
+    }
+    function closeSettings() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
+
+// PAGE STARTUP
 window.onload = function(){
    getProfile();
 }
