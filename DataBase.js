@@ -63,8 +63,13 @@
             return false;
         }
     // FUNCTION: getBusiness
-        async function getBusiness(BusinessID){
-            let sql = "SELECT * FROM businesses WHERE BusinessID = " + BusinessID ;
+        async function getBusiness(BusinessID_or_Name){
+            let sql;
+            if(typeof(BusinessID) == 'string'){
+                sql = "SELECT * FROM businesses WHERE BusinessName = " + "'" + BusinessID_or_Name + "'";
+            }else{
+                sql = "SELECT * FROM businesses WHERE BusinessID = " + BusinessID_or_Name ;
+            }
             let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
             if(await results.length > 0){
                 return await results[0];

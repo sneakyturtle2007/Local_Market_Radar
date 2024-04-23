@@ -8,6 +8,7 @@
   var Login = require('./Backend_NodeJS_Files/Login.js');
   var SignUp = require('./Backend_NodeJS_Files/SignUp.js');
   var Profile = require('./Backend_NodeJS_Files/Profile.js');
+  var Business = require('./Backend_NodeJS_Files/Business.js');
 // SERVER SETUP
   var app = express();
 
@@ -27,7 +28,11 @@
     app.get('/Profile', function (req, res) {
       res.sendFile(path.join(__dirname,'Profile', 'Profile.html'));
     });
-
+  // manageBusiness Page
+    app.get('/manageBusiness', async function (req, res) {
+      res.sendFile(path.join(__dirname,'manageBusiness', 'manageBusiness.html'));
+    });
+    
 // STATIC PAGES SETUP
   
   // main page
@@ -42,10 +47,7 @@
     app.get('/Signup', function (req, res) {
       res.sendFile(path.join(__dirname,'SignUp', 'Signup.html'));
     });
-  // Business Page
-    app.get('/Business', function (req, res) {
-      res.sendFile(path.join(__dirname,'Business', 'Business.html'));
-    });
+ 
     
 // API SETUP
 
@@ -85,6 +87,12 @@
       res.json(result);
     });
 
+  // manage business page
+    app.get('/api/business', async function (req, res) {
+      var username = req.query.username;
+      var result = await Business.getBusiness(username);
+      res.json(result);
+    });
 // SERVER STARTUP
 
   const httpsOptions = {

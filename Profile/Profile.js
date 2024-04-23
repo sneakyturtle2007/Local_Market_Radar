@@ -1,6 +1,5 @@
 
 async function getProfile(){
-    var username;
     var cookies = document.cookie.split(";");
     var username = cookies[1].split("=")[1];
 
@@ -11,7 +10,7 @@ async function getProfile(){
 
     var profile = await fetch("/api/profile?username=" + username).then(res => res.json()).catch(err => console.log(err) );
     
-    var profileContainer = document.getElementById("profile");
+    var profileContainer = document.getElementById("profile_and_Business");
     profileContainer.innerHTML = "";
     
     var profilePicture_and_username = document.createElement("div");
@@ -19,7 +18,7 @@ async function getProfile(){
 
     var profilePicture = document.createElement("img");
     profilePicture.id= "profilePicture";
-    profilePicture.src = profile.AccountProfilePicture;
+    profilePicture.src = profile.accountProfilePicture;
 
     var username_and_Email = document.createElement("div");
     username_and_Email.id = "Username_and_Email";
@@ -30,7 +29,7 @@ async function getProfile(){
 
     var Email = document.createElement("p");
     Email.id = "Email";
-    Email.textContent = profile.AccountEmail;
+    Email.textContent = profile.accountEmail;
 
     var editProfileLink = document.createElement("a");
     editProfileLink.id = "EditProfile";
@@ -41,11 +40,26 @@ async function getProfile(){
 
     var profileInfoButton = document.createElement("button");
     profileInfoButton.id = "profileInfoButton";
+    profileInfoButton.innerHTML = "Profile Info";
     profileInfoButton.onclick = function(){
         openProfileInfo();
     }
     profileInfoButton.textContent = "Profile Info";
-
+    if(profile.businessName != "NONE"){
+        var businessButton = document.createElement("button");
+        businessButton.id = "businessButton";
+        businessButton.innerHTML = "Manage Business";
+        businessButton.onclick = function(){
+            window.location.href = "/manageBusiness";
+        }
+    }else{
+        var businessButton = document.createElement("button");
+        businessButton.id = "businessButton";
+        businessButton.innerHTML = "Create Business";
+        businessButton.onclick = function(){
+            window.location.href = "/createBusiness";
+        }
+    }
     username_and_Email.appendChild(Username);
     username_and_Email.appendChild(Email);
     username_and_Email.appendChild(editProfileLink);
@@ -55,45 +69,46 @@ async function getProfile(){
     profileOptions.appendChild(profileInfoButton);
     profileContainer.appendChild(profileOptions);
 } 
-async function openProfileInfo(){
-    var cookies = document.cookie.split(";");
-    var username = cookies[1].split("=")[1];
-    
-    var backButton = document.getElementById("backButton");
-    backButton.onclick = function(){
-        getProfile();
+// PROFILE INFO BUTTON 
+    async function openProfileInfo(){
+        var cookies = document.cookie.split(";");
+        var username = cookies[1].split("=")[1];
+        
+        var backButton = document.getElementById("backButton");
+        backButton.onclick = function(){
+            getProfile();
+        }
+        var profile = await fetch("/api/profile?username=" + username).then(res => res.json()).catch(err => console.log(err) );
+        
+        var profileContainer = document.getElementById("profile_and_Business");
+        profileContainer.innerHTML = "";
+
+        var profileInfo = document.createElement("div");
+        profileInfo.id = "profileInfo";
+
+        var image = document.createElement("img");
+        image.src = profile.accountProfilePicture;
+        
+
+        var username = document.createElement("h3");
+        username.innerHTML = "Username: " + profile.accountName + "<br>";
+        
+
+        var email = document.createElement("p");
+        email.innerHTML ="Email: " +  profile.accountEmail + "<br>";
+        
+
+        var address = document.createElement("p");
+        address.innerHTML ="Address: " + profile.accountAddress;
+        
+
+        profileInfo.appendChild(image);
+        profileInfo.appendChild(username);
+        profileInfo.appendChild(email);
+        profileInfo.appendChild(address);
+        profileContainer.appendChild(profileInfo);
     }
-    var profile = await fetch("/api/profile?username=" + username).then(res => res.json()).catch(err => console.log(err) );
-    
-    var profileContainer = document.getElementById("profile");
-    profileContainer.innerHTML = "";
-
-    var profileInfo = document.createElement("div");
-    profileInfo.id = "profileInfo";
-
-    var image = document.createElement("img");
-    image.src = profile.AccountProfilePicture;
-    
-
-    var username = document.createElement("h3");
-    username.innerHTML = "Username: " + profile.AccountName + "<br>";
-    
-
-    var email = document.createElement("p");
-    email.innerHTML ="Email: " +  profile.AccountEmail + "<br>";
-    
-
-    var address = document.createElement("p");
-    address.innerHTML ="Address: " + profile.AccountAddress;
-    
-
-    profileInfo.appendChild(image);
-    profileInfo.appendChild(username);
-    profileInfo.appendChild(email);
-    profileInfo.appendChild(address);
-    profileContainer.appendChild(profileInfo);
-
-}
+ 
 // SIDEBAR
 
     function openSettings() {

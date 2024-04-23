@@ -74,7 +74,7 @@ p {
 #backButton:hover{
     background-color: rgb(66,66,66);
 }
-#profile{
+#profile_and_Business{
     display:flex;
     flex-direction: column;
     align-items: center
@@ -123,7 +123,10 @@ p {
 #profileInfoButton{
     height: 50px;
     width: 400px;
-
+}
+#businessButton{
+    height: 50px;
+    width: 400px;
 }
 /* profile info */
 #profileInfo{

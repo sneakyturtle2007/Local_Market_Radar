@@ -38,7 +38,7 @@ p {
     margin-top: 20px; 
     clear: both;
 }
-.container{
+#container{
     display: flex;
     flex-direction: column;
     height: auto;
