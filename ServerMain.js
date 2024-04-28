@@ -79,9 +79,10 @@
     
   // profile page
     app.get('/api/profile', async function (req, res) {
-      console.log(req.query.username)
-      console.log("debug");
+      
+      
       var username = req.query.username;
+      console.log("Username Input (profile api): " + username);
       var result = await Profile.getProfile(username);
       console.log(result);
       res.json(result);
@@ -91,6 +92,7 @@
     app.get('/api/business', async function (req, res) {
       var username = req.query.username;
       var result = await Business.getBusiness(username);
+      console.log("Final Result(business api): " + result);
       res.json(result);
     });
 // SERVER STARTUP

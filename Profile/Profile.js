@@ -45,7 +45,7 @@ async function getProfile(){
         openProfileInfo();
     }
     profileInfoButton.textContent = "Profile Info";
-    if(profile.businessName != "NONE"){
+    if(profile.businessName != "None"){
         var businessButton = document.createElement("button");
         businessButton.id = "businessButton";
         businessButton.innerHTML = "Manage Business";
@@ -67,6 +67,7 @@ async function getProfile(){
     profilePicture_and_username.appendChild(username_and_Email);
     profileContainer.appendChild(profilePicture_and_username);
     profileOptions.appendChild(profileInfoButton);
+    profileOptions.appendChild(businessButton);
     profileContainer.appendChild(profileOptions);
 } 
 // PROFILE INFO BUTTON 
@@ -118,7 +119,9 @@ async function getProfile(){
         document.getElementById("mySidebar").style.width = "0";
         document.getElementById("main").style.marginLeft = "0";
     }
-
+    function logout(){
+        document.cookie = "loggedin=false; expires=" + 0 + "; path=/";
+    }
 // PAGE STARTUP
 window.onload = function(){
    getProfile();

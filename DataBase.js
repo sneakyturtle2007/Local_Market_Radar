@@ -27,11 +27,10 @@
     
     // FUNCTION: getAccount
         async function getAccount(name){
+            console.log("Database.js getAccount() username input: " + name);
             let sql = "SELECT * FROM accounts WHERE AccountName = '" + name + "'" ;
             let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
-            
             if(await results.length > 0){
-                console.log("getAccount");
                 console.log(await results);
                 return await results;
             }else{
