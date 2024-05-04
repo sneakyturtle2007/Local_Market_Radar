@@ -1,9 +1,9 @@
-// LIBRARIES: Express and Path
+// LIBRARIES: Express, Path, FS, HTTPS
   var express = require('express');
   var https = require('https');
   var path = require('path');
   var fs = require('fs');
-// LOCAL FILE IMPORTS: Handler.js
+// LOCAL FILE IMPORTS: Search, Login, SignUp, Profile, Business
   var Search = require('./Backend_NodeJS_Files/Search.js');
   var Login = require('./Backend_NodeJS_Files/Login.js');
   var SignUp = require('./Backend_NodeJS_Files/SignUp.js');
