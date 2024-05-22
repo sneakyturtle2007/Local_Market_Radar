@@ -141,6 +141,7 @@ p {
         flex-direction: column;
         height: auto;
         align-items: center;
+        margin-bottom: 20px;
     }
     #profilePicture_and_username {
         display: flex;
@@ -175,4 +176,9 @@ p {
         flex-direction: column;
         align-content: center;
         justify-content: center;
+        color: white;
+    }
+    #Products{
+        height: 50px;
+        width: 400px;
     }

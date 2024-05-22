@@ -30,6 +30,12 @@ async function openBusiness(){
     var editProfileLink = document.createElement("a");
     editProfileLink.id = "EditProfile";
     editProfileLink.href = "/EditProfile";
+    editProfileLink.textContent = "Edit Business Info";
+
+    var Products = document.createElement("button");
+    Products.id = "Products";
+    Products.textContent = "Products";
+    Products.onclick = function(){openProducts();}
 
     username_and_Email.appendChild(Username);
     username_and_Email.appendChild(Email);
@@ -37,8 +43,14 @@ async function openBusiness(){
     profilePicture_and_username.appendChild(profilePicture);
     profilePicture_and_username.appendChild(username_and_Email);
     profileContainer.appendChild(profilePicture_and_username);
+    profileContainer.appendChild(Products);
     
 }
+// Products Button
+    function openProducts(){
+        console.log("Products Button Clicked");
+    }
+    
 // SIDE BAR FUNCTIONS
     function openSettings() {
         document.getElementById("mySidebar").style.width = "250px";
@@ -54,4 +66,4 @@ async function openBusiness(){
 // ONLOAD FUNCTION
 window.onload = function(){
     openBusiness();
- }
+}
