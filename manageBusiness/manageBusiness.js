@@ -4,9 +4,14 @@ async function openBusiness(){
 
     var account = await fetch("/api/profile?username=" + username).then(res => res.json()).catch(err => console.log(err) );
     
-    //var Business = await fetch("/api/business?"+ account.BusinessName).then(res => res.json()).catch(err => console.log(err));
+    var backButton = document.getElementById("backButton");
+    backButton.onclick = function(){document.location.href = '/Profile';}
 
-    var profileContainer = document.getElementById("container");
+    var mainContainer = document.getElementById("outsideContainer");
+    mainContainer.innerHTML = "";
+
+    var profileContainer = document.createElement("div");
+    profileContainer.id = "container";
     profileContainer.innerHTML = "";
 
     var profilePicture_and_username = document.createElement("div");
@@ -32,8 +37,11 @@ async function openBusiness(){
     editProfileLink.href = "/EditProfile";
     editProfileLink.textContent = "Edit Business Info";
 
+    var profileOptions = document.createElement("div");
+    profileOptions.id = "profileOptions";
+
     var Products = document.createElement("button");
-    Products.id = "Products";
+    Products.id = "ProductsButton";
     Products.textContent = "Products";
     Products.onclick = function(){openProducts();}
 
@@ -43,13 +51,80 @@ async function openBusiness(){
     profilePicture_and_username.appendChild(profilePicture);
     profilePicture_and_username.appendChild(username_and_Email);
     profileContainer.appendChild(profilePicture_and_username);
-    profileContainer.appendChild(Products);
+    profileOptions.appendChild(Products);
+    profileContainer.appendChild(profileOptions);
+    mainContainer.appendChild(profileContainer);
     
 }
-// Products Button
-    function openProducts(){
-        console.log("Products Button Clicked");
+// Products
+    async function openProducts(){
+
+        var backButtonDiv = document.getElementById("backButtonDiv");
+
+        var backButton = document.getElementById("backButton");
+        backButton.onclick = function(){openBusiness();}
+
+        var mainContainer = document.getElementById("outsideContainer");
+        mainContainer.innerHTML = "";
+
+        var addProduct = document.createElement("button");
+        addProduct.id = "addProduct";
+        addProduct.textContent = "Add Product";
+        addProduct.onclick = function(){addProduct()};
+
+        var productContainer = document.createElement("div");
+        productContainer.id = "productContainer";
+
+
+        
+        backButtonDiv.appendChild(addProduct);
+        mainContainer.appendChild(productContainer);
+        
+        var items = await fetch("/api/items?search=").then(res => res.json()).catch(err => console.log(err) );
+        displayItems(items);
+
+        
     }
+    function displayItems(items){
+        var MainContainer = document.getElementById("productContainer");
+        
+        items.forEach(function(item){
+            var linkContainer = document.createElement("div");
+            //linkContainer.onclick = function(){DisplayItem(item);}
+
+            var itemContainer = document.createElement("div");
+            itemContainer.className = "itemcontainer";
+            
+
+            var itemCard = document.createElement("div");
+            itemCard.className = "itemcard";
+
+            var img = document.createElement("img");
+            img.src = item.image;
+            img.alt = "image";
+
+            var name = document.createElement("h5");
+            name.className = "name";
+            name.textContent = item.name;
+        
+            var price = document.createElement("p");
+            price.className = "price";
+            price.textContent = "Price: " + item.price + " | Stock: " + item.stock;
+
+            var description = document.createElement("p");
+            description.className = "description";
+            description.textContent = "Description: " + item.description;
+
+            itemCard.appendChild(img);
+            itemCard.appendChild(name);
+            itemCard.appendChild(price);
+            itemCard.appendChild(description);
+            itemContainer.appendChild(itemCard);
+            linkContainer.appendChild(itemContainer);
+            MainContainer.appendChild(linkContainer);
+        });
+    }
+
     
 // SIDE BAR FUNCTIONS
     function openSettings() {

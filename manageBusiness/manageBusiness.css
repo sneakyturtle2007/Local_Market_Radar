@@ -136,12 +136,15 @@ p {
         background-color: rgb(66,66,66);
     }
 /* MAIN CONTAINTER*/
+
     #container{
         display: flex;
         flex-direction: column;
         height: auto;
         align-items: center;
-        margin-bottom: 20px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        margin-right: auto;
     }
     #profilePicture_and_username {
         display: flex;
@@ -149,7 +152,7 @@ p {
         justify-content: center;
         align-items: center;
         margin-top: 40px;
-        
+    
     }
     #Username_and_Email {
         display:block;
@@ -171,6 +174,13 @@ p {
         font-size: 14px;
         font-family: sans-serif;
     }
+    #profileOptions{
+        display: flex;
+        flex-direction: column;
+        margin-top: 25px;
+        justify-content: center;
+        align-items: center;
+    }
     #EditProfile {
         display: flex;
         flex-direction: column;
@@ -178,7 +188,69 @@ p {
         justify-content: center;
         color: white;
     }
-    #Products{
+    #ProductsButton{
         height: 50px;
         width: 400px;
+    }
+/* Products */
+    #addProduct{
+        display: flex;
+        height: 25px;
+        margin-right:10%;
+        margin-left: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .itemcontainer{
+        display: flex;
+        flex-grow : 1;
+        
+        margin: 16px 16px;
+        justify-content: space-between;
+        float: left;
+    }
+    .itemcard{
+        
+        background-color: rgb(33, 33, 33);
+        border: 1px solid white;
+        border-radius: 10px;
+        
+        padding: 10px;
+        width: 210px;
+        height: 245px;
+        float: left;
+        
+        
+        text-align: center; 
+        color:  rgb(220,220,220);
+    }
+    .itemcard img{
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid grey;
+        width: 145px;
+        height: 100px;
+    }
+    .itemcard p.name{ 
+        width: 200px;
+        height: 20px;
+        text-align: center;
+        font-size: 1.em;
+        overflow: auto;
+    }
+    .itemcard p.price{
+        font-size: 0.8em;
+    }
+
+    .itemcard p.description{ 
+        
+        background-color: rgb(33, 33, 33);
+        width: 200px;
+        height: 50px;
+        margin: 4px;
+        border: 1px solid white;
+        border-radius: 10px;
+        font-size: 0.8em;
+        overflow: auto;
     }

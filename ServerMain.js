@@ -79,8 +79,7 @@
     
   // profile page
     app.get('/api/profile', async function (req, res) {
-      
-      
+
       var username = req.query.username;
       console.log("Username Input (profile api): " + username);
       var result = await Profile.getProfile(username);
