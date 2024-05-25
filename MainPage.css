@@ -1,11 +1,13 @@
 body {
+    display: flex;
+    flex-direction: column;
     background: linear-gradient(rgb(12, 12, 12), rgb(56, 65, 56)); 
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 }
 footer {
-
+    left: 0;
     bottom: 0;
     margin-bottom:0;
     margin-top: 10%;

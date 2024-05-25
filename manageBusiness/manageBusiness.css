@@ -1,4 +1,6 @@
 body {
+    display: flex;
+    flex-direction: column;
     background-color : rgb(33, 33, 33); 
     background-repeat: no-repeat;
     background-attachment: fixed;
