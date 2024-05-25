@@ -29,13 +29,14 @@ p {
     color: white;
     font-family: sans-serif;
 }
-.footer{
+footer{
     
+    bottom:0;
     background-color: rgb(33, 33, 33);
     color: white;
     text-align: center;
     padding: 10px;
-    margin-top: 20px; 
+    margin-top: 10%; 
     clear: both;
 }
 #container{
