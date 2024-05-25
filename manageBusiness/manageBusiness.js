@@ -4,8 +4,7 @@ async function openBusiness(){
 
     var account = await fetch("/api/profile?username=" + username).then(res => res.json()).catch(err => console.log(err) );
     
-    var backButton = document.getElementById("backButton");
-    backButton.onclick = function(){document.location.href = '/Profile';}
+    redrawBackButtonDiv();
 
     var mainContainer = document.getElementById("outsideContainer");
     mainContainer.innerHTML = "";
@@ -55,6 +54,7 @@ async function openBusiness(){
     profileContainer.appendChild(profileOptions);
     mainContainer.appendChild(profileContainer);
     
+
 }
 // Products
     async function openProducts(){
@@ -67,9 +67,9 @@ async function openBusiness(){
         var mainContainer = document.getElementById("outsideContainer");
         mainContainer.innerHTML = "";
 
-        var addProduct = document.createElement("button");
+        var addProduct = document.createElement("div");
         addProduct.id = "addProduct";
-        addProduct.textContent = "Add Product";
+        addProduct.innerHTML = '&#43;';
         addProduct.onclick = function(){addProduct()};
 
         var productContainer = document.createElement("div");
@@ -85,6 +85,7 @@ async function openBusiness(){
 
         
     }
+    
     function displayItems(items){
         var MainContainer = document.getElementById("productContainer");
         
@@ -125,7 +126,18 @@ async function openBusiness(){
         });
     }
 
-    
+// BACK BUTTON DIV
+    function redrawBackButtonDiv(){
+        var backButtonDiv = document.getElementById("backButtonDiv");
+        backButtonDiv.innerHTML = "";
+        
+        var backButton = document.createElement("div");
+        backButton.id = "backButton";
+        backButton.innerHTML = '&#8592;'
+        backButton.onclick = function(){document.location.href = '/Profile';}
+        backButtonDiv.appendChild(backButton);
+    }
+
 // SIDE BAR FUNCTIONS
     function openSettings() {
         document.getElementById("mySidebar").style.width = "250px";
