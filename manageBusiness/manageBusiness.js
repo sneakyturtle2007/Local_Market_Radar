@@ -1,3 +1,8 @@
+
+/**
+ * Opens the business profile page and displays the account information.
+ * @returns {Promise<void>} A promise that resolves when the business profile page is opened.
+ */
 async function openBusiness(){
     var cookies = document.cookie.split(";");
     var username = cookies[1].split("=")[1];
@@ -56,42 +61,68 @@ async function openBusiness(){
     
 
 }
-// Products
-    async function openProducts(){
 
-        var backButtonDiv = document.getElementById("backButtonDiv");
+/**
+ * Opens the products section.
+ * 
+ * @returns {Promise<void>} A promise that resolves when the products section is opened.
+ */
+async function openProducts(){
 
-        var backButton = document.getElementById("backButton");
-        backButton.onclick = function(){openBusiness();}
+    var backButtonDiv = document.getElementById("backButtonDiv");
 
-        var mainContainer = document.getElementById("outsideContainer");
-        mainContainer.innerHTML = "";
+    var backButton = document.getElementById("backButton");
+    backButton.onclick = function(){openBusiness();}
 
-        var addProduct = document.createElement("div");
-        addProduct.id = "addProduct";
-        addProduct.innerHTML = '&#43;';
-        addProduct.onclick = function(){addProduct()};
+    var mainContainer = document.getElementById("outsideContainer");
+    mainContainer.innerHTML = "";
 
-        var productContainer = document.createElement("div");
-        productContainer.id = "productContainer";
+    var addProduct = document.createElement("div");
+    addProduct.id = "addProduct";
+    addProduct.innerHTML = '&#43;';
+    addProduct.onclick = function(){addProduct()};
+
+    var productContainer = document.createElement("div");
+    productContainer.id = "productContainer";
 
 
-        
-        backButtonDiv.appendChild(addProduct);
-        mainContainer.appendChild(productContainer);
-        
-        var items = await fetch("/api/items?search=").then(res => res.json()).catch(err => console.log(err) );
-        displayItems(items);
-
-        
-    }
     
+    backButtonDiv.appendChild(addProduct);
+    mainContainer.appendChild(productContainer);
+    
+    var items = await fetch("/api/items?search=").then(res => res.json()).catch(err => console.log(err) );
+    displayItems(items);
+
+    
+}
+
+
+//Generic Functions
+    /**
+     * Redraws the back button div.
+     */
+    function redrawBackButtonDiv(){
+        var backButtonDiv = document.getElementById("backButtonDiv");
+        backButtonDiv.innerHTML = "";
+        
+        var backButton = document.createElement("div");
+        backButton.id = "backButton";
+        backButton.innerHTML = '&#8592;'
+        backButton.onclick = function(){document.location.href = '/Profile';}
+        backButtonDiv.appendChild(backButton);
+    }
+
+    /**
+     * Display items on the product container.
+     * 
+     * @param {Array} items - An array of items to be displayed.
+     */
     function displayItems(items){
         var MainContainer = document.getElementById("productContainer");
         
         items.forEach(function(item){
             var linkContainer = document.createElement("div");
-            //linkContainer.onclick = function(){DisplayItem(item);}
+            linkContainer.onclick = function(){DisplayItem(item);}
 
             var itemContainer = document.createElement("div");
             itemContainer.className = "itemcontainer";
@@ -125,32 +156,89 @@ async function openBusiness(){
             MainContainer.appendChild(linkContainer);
         });
     }
+    
+    function DisplayItem(passedItem){
 
-// BACK BUTTON DIV
-    function redrawBackButtonDiv(){
-        var backButtonDiv = document.getElementById("backButtonDiv");
-        backButtonDiv.innerHTML = "";
-        
-        var backButton = document.createElement("div");
-        backButton.id = "backButton";
-        backButton.innerHTML = '&#8592;'
-        backButton.onclick = function(){document.location.href = '/Profile';}
-        backButtonDiv.appendChild(backButton);
+        var item = passedItem;
+
+        if(item){
+            var MainContainer = document.getElementById("MainContainer");
+            MainContainer.innerHTML = "";
+
+            var backButtonDiv = document.createElement("div");
+            backButtonDiv.id = "backButtonDiv";
+
+            var backButton = document.createElement("div");
+            backButton.innerHTML = '&#8592;';
+            backButton.id = "backButton";
+            backButton.onclick = function(){search();};
+
+            var itemContainer = document.createElement("div");
+            itemContainer.id = "container";
+
+            var img = document.createElement("img");
+            img.id = "itemImage";
+            img.src = item.image;
+            img.alt = "image";
+
+            var itemInfo = document.createElement("div");
+            itemInfo.className = "ItemInfo";
+
+            var name = document.createElement("h2");
+            name.innerHTML = item.name +"<br>" + "<a href='/Business'> <h5 id='businessLink'>Store: placeholder</h5> </a>"+ "<hr>";
+            /*
+            var address = document.createElement("h5");
+            address.textContent = item.Address;
+            address.id = "address";
+            */
+            var priceAndStock = document.createElement("h4");
+            priceAndStock.innerHTML = "Price: " + item.price + "<br>" + "<h5 id='itemStock'>Stock: " + item.stock + "<br>" + "</h5>" + "<h5 id='address'>"+"Address: " + item.Address + "</h5>";
+
+            var description = document.createElement("p");
+            description.innerHTML = "<p style='text-align: left;'>Description:</p>" + item.description;
+
+            itemInfo.appendChild(name);
+            //itemInfo.appendChild(address);
+            itemInfo.appendChild(priceAndStock);
+            itemInfo.appendChild(description);
+            itemContainer.appendChild(img);
+            itemContainer.appendChild(itemInfo);
+            backButtonDiv.appendChild(backButton);
+            MainContainer.appendChild(backButtonDiv);
+            MainContainer.appendChild(itemContainer);
+        }else{
+            console.log("No item found");
+        }
     }
 
 // SIDE BAR FUNCTIONS
+    /**
+     * Opens the settings sidebar by setting its width to 250px.
+     */
     function openSettings() {
         document.getElementById("mySidebar").style.width = "250px";
     }
+    /**
+     * Closes the settings sidebar and adjusts the main content margin.
+     */
     function closeSettings() {
         document.getElementById("mySidebar").style.width = "0";
         document.getElementById("main").style.marginLeft = "0";
     }
+    /**
+     * Logs out the user by setting the "loggedin" cookie to false.
+     */
     function logout(){
         document.cookie = "loggedin=false; expires=" + 0 + "; path=/";
     }
 
-// ONLOAD FUNCTION
-window.onload = function(){
-    openBusiness();
-}
+
+//Onload function
+    /**
+     * Executes the `openBusiness` function when the window finishes loading.
+     * 
+     * @returns {void}
+     */
+    window.onload = function(){
+        openBusiness();
+    }
