@@ -1,7 +1,8 @@
-// LIBRARY: mysql2
+// LIBRARY: mysql2, fs
     const mysql = require('mysql2');
     var fs = require('fs');
-// VARIABLES
+// LOCAL IMPORTS
+    const UpdateDocumentation = require('./DB_Documentor.js');
 // DATABASE CONNECTION
     const con = mysql.createConnection({
         host: 'localhost',
@@ -11,24 +12,12 @@
     });
     con.connect(function(err) {
             if (err) throw err;
-            console.log("Database Connected!");    
+            console.log("Database Connected!"); 
+            updateDatabaseDocumentation();   
     });
 // DOCUMENTATION
     async function updateDatabaseDocumentation(){
-        var documentation = "";
-        documentation += "All tables in database - \n";
-
-        let[results, fields] =  await con.promise().query("SHOW TABLES").catch((err) => {console.log(err);});
-        console.log("Show tables query for documentation: ");
-        console.log(await results);
-        for(var i = 0; i < results.length; i++){
-            documentation += "    "
-            documentation += await results[i].Tables_in_main ;
-            documentation += "\n";
-        }
-        
-        documentation += "\n\n";
-        fs.writeFileSync("DatabaseDocumentation.txt", documentation);
+        UpdateDocumentation.UpdateDocumentation(con);
     }
 // TABLE - accounts
 
@@ -47,7 +36,7 @@
             console.log("Database.js getAccount() username input: " + name);
             let sql = "SELECT * FROM accounts WHERE AccountName = '" + name + "'" ;
             let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
-            updateDatabaseDocumentation();
+            
             if(await results.length > 0){
                 console.log(await results);
                 return await results;

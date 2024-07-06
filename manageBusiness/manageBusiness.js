@@ -1,8 +1,4 @@
 
-/**
- * Opens the business profile page and displays the account information.
- * @returns {Promise<void>} A promise that resolves when the business profile page is opened.
- */
 async function openBusiness(){
     var cookies = document.cookie.split(";");
     var username = cookies[1].split("=")[1];
@@ -62,11 +58,6 @@ async function openBusiness(){
 
 }
 
-/**
- * Opens the products section.
- * 
- * @returns {Promise<void>} A promise that resolves when the products section is opened.
- */
 async function openProducts(){
 
     var backButtonDiv = document.getElementById("backButtonDiv");
@@ -98,9 +89,7 @@ async function openProducts(){
 
 
 //Generic Functions
-    /**
-     * Redraws the back button div.
-     */
+
     function redrawBackButtonDiv(){
         var backButtonDiv = document.getElementById("backButtonDiv");
         backButtonDiv.innerHTML = "";
@@ -112,11 +101,7 @@ async function openProducts(){
         backButtonDiv.appendChild(backButton);
     }
 
-    /**
-     * Display items on the product container.
-     * 
-     * @param {Array} items - An array of items to be displayed.
-     */
+
     function displayItems(items){
         var MainContainer = document.getElementById("productContainer");
         
@@ -212,33 +197,23 @@ async function openProducts(){
     }
 
 // SIDE BAR FUNCTIONS
-    /**
-     * Opens the settings sidebar by setting its width to 250px.
-     */
+    
     function openSettings() {
         document.getElementById("mySidebar").style.width = "250px";
     }
-    /**
-     * Closes the settings sidebar and adjusts the main content margin.
-     */
+
     function closeSettings() {
         document.getElementById("mySidebar").style.width = "0";
         document.getElementById("main").style.marginLeft = "0";
     }
-    /**
-     * Logs out the user by setting the "loggedin" cookie to false.
-     */
+  
     function logout(){
         document.cookie = "loggedin=false; expires=" + 0 + "; path=/";
     }
 
 
 //Onload function
-    /**
-     * Executes the `openBusiness` function when the window finishes loading.
-     * 
-     * @returns {void}
-     */
+  
     window.onload = function(){
         openBusiness();
     }
