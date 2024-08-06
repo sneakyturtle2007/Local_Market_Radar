@@ -1,13 +1,14 @@
-const mysql = require('mysql2');
+const sqlite3 = require('better-sqlite3');
 var fs = require('fs');
 
-async function UpdateDocumentation(con){
+async function UpdateDocumentation(Database){
     var documentation = "";
     documentation += "All tables in database - \n";
     
-    let[results, fields] =  await con.promise().query("SHOW TABLES").catch((err) => {console.log(err);});
+    let results = Database.prepare("SHOW TABLES").all();
+
     console.log("Show tables query for documentation: ");
-    console.log(await results);
+    console.log(results);
     let tables = "Table Descriptions - \n";
     for(var i = 0; i < results.length; i++){
         let tableName = await results[i].Tables_in_main;
@@ -17,7 +18,7 @@ async function UpdateDocumentation(con){
         tables += tableName + " - \n";
         tables += "    Field | Type | Null | Key | Default | Extra\n\n";
         console.log("table info  - ");
-        let tableInfo = await GetTableInfo(con, tableName).catch((err) => {console.log(err);} )
+        let tableInfo = GetTableInfo(Database, tableName);
         console.log(tableInfo);
         tables += "    " + tableInfo.map(row => row.Field + "  |" + row.Type + " | " + row.Null + " | " + row.Key + " | " + row.Default + " | " + row.Extra).join("\n    ") + "\n";
         tables += "\n";
@@ -27,11 +28,12 @@ async function UpdateDocumentation(con){
     fs.writeFileSync("DatabaseDocumentation.txt", documentation);
 }
 
-async function GetTableInfo(con, tableName){
-    let[results, fields] =  await con.promise().query("DESCRIBE " + tableName).catch((err) => {console.log(err);});
+async function GetTableInfo(Database, tableName){
+    let results = Database.prepare('DESCRIBE ' + tableName).all();
+
     console.log("Describe query for documentation: ");
-    console.log(await results);
-    return await results;
+    console.log(results);
+    return results;
 }
 
 
