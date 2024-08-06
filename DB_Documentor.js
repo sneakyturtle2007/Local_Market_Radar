@@ -5,13 +5,13 @@ async function UpdateDocumentation(Database){
     var documentation = "";
     documentation += "All tables in database - \n";
     
-    let results = Database.prepare("SHOW TABLES").all();
-
+    let results = Database.prepare("SELECT name FROM sqlite_schema WHERE type='table' AND name NOT LIKE 'sqlite_%';").get();
+    
     console.log("Show tables query for documentation: ");
     console.log(results);
     let tables = "Table Descriptions - \n";
     for(var i = 0; i < results.length; i++){
-        let tableName = await results[i].Tables_in_main;
+        let tableName = await results[i].name;
         documentation += "    "
         documentation += tableName;
         documentation += "\n";
@@ -20,7 +20,7 @@ async function UpdateDocumentation(Database){
         console.log("table info  - ");
         let tableInfo = GetTableInfo(Database, tableName);
         console.log(tableInfo);
-        tables += "    " + tableInfo.map(row => row.Field + "  |" + row.Type + " | " + row.Null + " | " + row.Key + " | " + row.Default + " | " + row.Extra).join("\n    ") + "\n";
+        tables += "    " + results[i].name;
         tables += "\n";
     }
     documentation += "\n\n";
@@ -29,7 +29,7 @@ async function UpdateDocumentation(Database){
 }
 
 async function GetTableInfo(Database, tableName){
-    let results = Database.prepare('DESCRIBE ' + tableName).all();
+    let results = Database.prepare('PRAGMA table_info([?])').get(tableName);
 
     console.log("Describe query for documentation: ");
     console.log(results);

@@ -8,13 +8,15 @@ const UpdateDocumentation = require('./DB_Documentor.js');
 const Database = new sqlite('my-database.Database'); // Use a file-based SQLite database
 
 // Create tables if they don't exist
-Database.exec(`
+Database.prepare(`
     CREATE TABLE IF NOT EXISTS accounts (
         AccountID INTEGER PRIMARY KEY AUTOINCREMENT,
         AccountName TEXT,
         AccountPasscode TEXT,
         BusinessName TEXT
     );
+`).run();
+Database.prepare(`
     CREATE TABLE IF NOT EXISTS businesses (
         BusinessID INTEGER PRIMARY KEY AUTOINCREMENT,
         BusinessName TEXT,
@@ -23,6 +25,8 @@ Database.exec(`
         State TEXT,
         Country TEXT
     );
+`).run();
+Database.prepare(`
     CREATE TABLE IF NOT EXISTS products (
         ProductID INTEGER PRIMARY KEY AUTOINCREMENT,
         ProductName TEXT,
@@ -31,7 +35,7 @@ Database.exec(`
         ProductDescription TEXT,
         BusinessID INTEGER
     );
-`);
+`).run();
 
 console.log("Database Connected!");
 updateDatabaseDocumentation();
