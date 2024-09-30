@@ -32,10 +32,7 @@
     app.get('/manageBusiness', async function (req, res) {
       res.sendFile(path.join(__dirname,'manageBusiness', 'manageBusiness.html'));
     });
-  // createbusiness Page 
-    app.get('/createBusiness', async function (req,res){
-      res.sendFile(path.join(__dirname,'createBusiness', 'createBusiness.html'));
-    });
+    
 // STATIC PAGES SETUP
   
   // main page
