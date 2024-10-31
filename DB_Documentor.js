@@ -1,26 +1,25 @@
-const sqlite3 = require('better-sqlite3');
+const mysql = require('mysql2');
 var fs = require('fs');
 
-async function UpdateDocumentation(Database){
+async function UpdateDocumentation(con){
     var documentation = "";
     documentation += "All tables in database - \n";
     
-    let results = Database.prepare("SELECT name FROM sqlite_schema WHERE type='table' AND name NOT LIKE 'sqlite_%';").get();
-    
+    let[results, fields] =  await con.promise().query("SHOW TABLES").catch((err) => {console.log(err);});
     console.log("Show tables query for documentation: ");
-    console.log(results);
+    console.log(await results);
     let tables = "Table Descriptions - \n";
     for(var i = 0; i < results.length; i++){
-        let tableName = await results[i].name;
+        let tableName = await results[i].Tables_in_main;
         documentation += "    "
         documentation += tableName;
         documentation += "\n";
         tables += tableName + " - \n";
         tables += "    Field | Type | Null | Key | Default | Extra\n\n";
         console.log("table info  - ");
-        let tableInfo = GetTableInfo(Database, tableName);
+        let tableInfo = await GetTableInfo(con, tableName).catch((err) => {console.log(err);} )
         console.log(tableInfo);
-        tables += "    " + results[i].name;
+        tables += "    " + tableInfo.map(row => row.Field + "  |" + row.Type + " | " + row.Null + " | " + row.Key + " | " + row.Default + " | " + row.Extra).join("\n    ") + "\n";
         tables += "\n";
     }
     documentation += "\n\n";
@@ -28,12 +27,11 @@ async function UpdateDocumentation(Database){
     fs.writeFileSync("DatabaseDocumentation.txt", documentation);
 }
 
-async function GetTableInfo(Database, tableName){
-    let results = Database.prepare('PRAGMA table_info([?])').get(tableName);
-
+async function GetTableInfo(con, tableName){
+    let[results, fields] =  await con.promise().query("DESCRIBE " + tableName).catch((err) => {console.log(err);});
     console.log("Describe query for documentation: ");
-    console.log(results);
-    return results;
+    console.log(await results);
+    return await results;
 }
 
 

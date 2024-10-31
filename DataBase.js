@@ -1,141 +1,140 @@
-// LIBRARY: better-sqlite3, fs
-const sqlite = require('better-sqlite3');
-var fs = require('fs');
+// LIBRARY: mysql2, fs
+    const mysql = require('mysql2');
+    var fs = require('fs');
 // LOCAL IMPORTS
-const UpdateDocumentation = require('./DB_Documentor.js');
-
+    const UpdateDocumentation = require('./DB_Documentor.js');
 // DATABASE CONNECTION
-const Database = new sqlite('my-database.Database'); // Use a file-based SQLite database
-
-// Create tables if they don't exist
-Database.prepare(`
-    CREATE TABLE IF NOT EXISTS accounts (
-        AccountID INTEGER PRIMARY KEY AUTOINCREMENT,
-        AccountName TEXT,
-        AccountPasscode TEXT,
-        BusinessName TEXT
-    );
-`).run();
-Database.prepare(`
-    CREATE TABLE IF NOT EXISTS businesses (
-        BusinessID INTEGER PRIMARY KEY AUTOINCREMENT,
-        BusinessName TEXT,
-        Address TEXT,
-        City TEXT,
-        State TEXT,
-        Country TEXT
-    );
-`).run();
-Database.prepare(`
-    CREATE TABLE IF NOT EXISTS products (
-        ProductID INTEGER PRIMARY KEY AUTOINCREMENT,
-        ProductName TEXT,
-        ProductPrice REAL,
-        ProductStock INTEGER,
-        ProductDescription TEXT,
-        BusinessID INTEGER
-    );
-`).run();
-
-console.log("Database Connected!");
-updateDatabaseDocumentation();
-
+    const con = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'root',   
+        database: 'Main'
+    });
+    con.connect(function(err) {
+            if (err) throw err;
+            console.log("Database Connected!"); 
+            updateDatabaseDocumentation();   
+    });
 // DOCUMENTATION
-async function updateDatabaseDocumentation() {
-    UpdateDocumentation.UpdateDocumentation(Database);
-}
-
+    async function updateDatabaseDocumentation(){
+        UpdateDocumentation.UpdateDocumentation(con);
+    }
 // TABLE - accounts
 
-// FUNCTION: createAccount
-async function createAccount(name, password) {
-    const query = Database.prepare("INSERT INTO accounts (AccountName, AccountPasscode, BusinessName) VALUES (?, ?, 'None')");
-    const results = query.run(name, password);
-    return results.changes > 0;
-}
-
-// FUNCTION: getAccount
-async function getAccount(name) {
-    console.log("Database.js getAccount() username input: " + name);
-    const query = Database.prepare("SELECT * FROM accounts WHERE AccountName = ?");
-    const results = query.get(name);
-    if (results) {
-        console.log(results);
-        return results;
-    } else {
-        return false;
-    }
-}
-
-// FUNCTION: deleteAccount
-async function deleteAccount(name) {
-    const query = Database.prepare("DELETE FROM accounts WHERE AccountName = ?");
-    const results = query.run(name);
-    return results.changes > 0;
-}
+    // FUNCTION: createAccount
+        async function createAccount(name, password){
+            let sql = "INSERT INTO accounts (AccountName , AccountPasscode, BusinessName) VALUES ('" + name + "', '" + password + "', 'None')";
+            let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+            if(await results.affectedRows > 0){
+                return true;
+            }
+            return false;
+        }
+    
+    // FUNCTION: getAccount
+        async function getAccount(name){
+            console.log("Database.js getAccount() username input: " + name);
+            let sql = "SELECT * FROM accounts WHERE AccountName = '" + name + "'" ;
+            let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+            
+            if(await results.length > 0){
+                console.log(await results);
+                return await results;
+            }else{
+                return false;
+            }
+            
+        }
+    // FUNCTION: deleteAccount
+        async function deleteAccount(name){
+            let sql = "DELETE FROM accounts WHERE AccountName = " + "'" + name + "'";
+            let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+            if(await results.affectedRows > 0){
+                return true;
+            }else{
+                return false;
+            }
+           
+        }
 
 // TABLE - businesses
 
-// FUNCTION: createBusiness
-async function createBusiness(name, Address, City, State, Country) {
-    const query = Database.prepare("INSERT INTO businesses (BusinessName, Address, City, State, Country) VALUES (?, ?, ?, ?, ?)");
-    const results = query.run(name, Address, City, State, Country);
-    return results.changes > 0;
-}
-
-// FUNCTION: getBusiness
-async function getBusiness(BusinessID_or_Name) {
-    let query;
-    if (typeof BusinessID_or_Name === 'string') {
-        query = Database.prepare("SELECT * FROM businesses WHERE BusinessName = ?");
-    } else {
-        query = Database.prepare("SELECT * FROM businesses WHERE BusinessID = ?");
-    }
-    const result = query.get(BusinessID_or_Name);
-    if (result) {
-        return result;
-    } else {
-        return false;
-    }
-}
-
-// FUNCTION: deleteBusiness
-async function deleteBusiness(BusinessID) {
-    const query = Database.prepare("DELETE FROM businesses WHERE BusinessID = ?");
-    const results = query.run(BusinessID);
-    return results.changes > 0;
-}
+    // FUNCTION: createBusiness
+        async function createBusiness(name, Address, City, State, Country){
+            let sql = "INSERT INTO businesses (BusinessName, Address, City, State, Country) VALUES ('" + name + "', '"+ Address + "', '" + City + "', '" + State + "', '" + Country + "')";
+            let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+            if(await results.affectedRows > 0){
+                return true;
+            }
+            return false;
+        }
+    // FUNCTION: getBusiness
+        async function getBusiness(BusinessID_or_Name){
+            let sql;
+            if(typeof(BusinessID) == 'string'){
+                sql = "SELECT * FROM businesses WHERE BusinessName = " + "'" + BusinessID_or_Name + "'";
+            }else{
+                sql = "SELECT * FROM businesses WHERE BusinessID = " + BusinessID_or_Name ;
+            }
+            let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+            if(await results.length > 0){
+                return await results[0];
+            }else{
+                return false;
+            }
+        }
+    // FUNCTION: deleteBusiness
+        async function deleteBusiness(BusinessID){
+            let sql = "DELETE FROM businesses WHERE BusinessID = " + "'" + BusinessID + "'";
+            let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+            if(await results.affectedRows > 0){
+                return true;
+            }
+            return false;
+        }
 
 // TABLE - products
 
-// FUNCTION: getProducts
-async function getProducts(BusinessID, ProductName) {
-    let query;
-    if (BusinessID > 0) {
-        query = Database.prepare("SELECT * FROM products WHERE ProductName LIKE ? AND BusinessID = ?");
-        return query.all(`%${ProductName}%`, BusinessID);
-    } else if (ProductName !== '') {
-        query = Database.prepare("SELECT * FROM products WHERE ProductName LIKE ?");
-        return query.all(`%${ProductName}%`);
-    } else {
-        query = Database.prepare("SELECT * FROM products");
-        return query.all();
-    }
-}
+    // FUNCTION: getProducts
+        async function getProducts(BusinessID, ProductName) {
+            let sql;
+            if(BusinessID > 0){
+                sql = "SELECT * FROM products WHERE ProductName LIKE '%" + ProductName + "%' AND BusinessID LIKE '%" + BusinessID + "%'";
+            }else if(ProductName != ''){
+                sql = "SELECT * FROM products WHERE ProductName LIKE '%" + ProductName + "%'";
+            }else{
+                sql = "SELECT * FROM products";
+            }
+            
+            let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+            for(var i = 0; i < results.length; i++){
+                console.log(results[i]);
+            }
+            return await results;
+        }
 
-// FUNCTION: addProduct
-async function addProduct(ProductName, ProductPrice, ProductStock, ProductDescription) {
-    const query = Database.prepare("INSERT INTO products (ProductName, ProductPrice, ProductStock, ProductDescription) VALUES (?, ?, ?, ?)");
-    const results = query.run(ProductName, ProductPrice, ProductStock, ProductDescription);
-    return results.changes > 0;
-}
+    // FUNCTION: addProduct
+        async function addProduct( ProductName, ProductPrice, ProductStock, ProductDescription) {
+            let sql = "INSERT INTO products ( ProductName, ProductPrice, ProductStock, ProductDescription) VALUES ('" + ProductName + "', '" + ProductPrice + "', '" + ProductStock + "', '" + ProductDescription + "')";
+            let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+            if(await results.affectedRows > 0){
+                return true;
+            }
+            return false;
+        }
 
-// FUNCTION: deleteProduct
-async function deleteProduct(ProductName) {
-    const query = Database.prepare("DELETE FROM products WHERE ProductName = ?");
-    const results = query.run(ProductName);
-    return results.changes > 0;
-}
+    // FUNCTION: deleteProduct
+        async function deleteProduct(ProductName) {
+            let sql = "DELETE FROM products WHERE ProductName = " + "'" + ProductName + "'";
+            let [results, fields] = await con.promise().query(sql).catch((err) => { console.log(err); });
+            if(await results.affectedRows > 0){
+                return true;
+            }
+            return false;
+        }
+
+
+
 
 // EXPORTS
-module.exports = { getProducts, addProduct, deleteProduct, createAccount, deleteAccount, getAccount, createBusiness, getBusiness, deleteBusiness };
+    module.exports = {getProducts, addProduct, deleteProduct, createAccount, deleteAccount, getAccount, createBusiness, getBusiness, deleteBusiness};

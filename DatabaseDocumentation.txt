@@ -1,4 +1,39 @@
 All tables in database - 
+    accounts
+    businesses
+    products
 
 
 Table Descriptions - 
+accounts - 
+    Field | Type | Null | Key | Default | Extra
+
+    AccountName  |varchar(255) | NO | PRI | null | 
+    AccountPasscode  |varchar(255) | NO |  | null | 
+    BusinessName  |varchar(255) | NO |  | NONE | 
+    AccountEmail  |varchar(255) | NO |  | NONE | 
+    AccountAddress  |varchar(255) | NO |  | NONE | 
+    AccountProfilePicture  |varchar(255) | NO |  | /ProductImages/placeholder-image.png | 
+    FavoriteBusinesses  |varchar(255) | NO |  | NONE | 
+
+businesses - 
+    Field | Type | Null | Key | Default | Extra
+
+    BusinessName  |varchar(255) | NO |  | No Name | 
+    Address  |varchar(255) | NO |  | NONE | 
+    City  |varchar(255) | NO |  | NONE | 
+    State  |varchar(255) | NO |  | NONE | 
+    Country  |varchar(255) | NO |  | NONE | 
+    BusinessID  |int | NO | PRI | null | auto_increment
+    Zipcode  |varchar(255) | NO |  | 0 | 
+
+products - 
+    Field | Type | Null | Key | Default | Extra
+
+    ProductName  |varchar(255) | NO | PRI | NONE | 
+    ProductPrice  |double | NO |  | 0 | 
+    ProductStock  |int | NO |  | 0 | 
+    ProductDescription  |varchar(800) | NO |  | This is not an item and it has not been assigned an item | 
+    ProductImage  |varchar(255) | NO |  | /ProductImages/placeholder-image.png | 
+    BusinessID  |int | NO |  | -1 | 
+

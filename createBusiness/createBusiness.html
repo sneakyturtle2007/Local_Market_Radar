@@ -2,20 +2,37 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="manageBusiness.css">
+        <link rel="stylesheet" href="createBusiness.css">
         <title>Creating Business Account</title>
     </head>
     <body>
+        
         <header>
-            <h1 >Local Market Radar</h1>
+
+            <h1>Local Market Radar</h1>
+            <button class = "settingsButton"onclick="openSettings()">&#9776;</button>
             <hr>
         </header>
+    
 
         <main>
+
+            <div id="mySidebar" class="sidebar">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()">&times;</a>
+                <a href="/Search">Search</a>
+                <a href="/Profile">Profile</a>
+                <a href="/" onclick="logout()" >Logout</a>
+                <!-- <a href="/Settings">Settings</a> -->
+            </div>
+            <div id="backButtonDiv">
+                <div id="backButton" onclick="document.location.href = '/Search'">
+                    &#8592;
+                </div>
+            </div>
             <div id="container">
                 
             </div>
-            <script src="manageBusiness.js"></script>
+            <script src="createBusiness.js"></script>
         </main> 
 
         <footer>
